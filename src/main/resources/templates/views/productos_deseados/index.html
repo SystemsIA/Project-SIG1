@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="views/front/index :: head">
+</head>
+<body>
+	<header th:replace="views/front/index :: header"></header>
+	<nav id="navigation" th:fragment="navigation">
+		<!-- container -->
+		<div class="container">
+			<!-- responsive-nav -->
+			<div id="responsive-nav">
+				<!-- NAV -->
+				<ul class="main-nav nav navbar-nav">
+					<li class="active"><a href="#">Mis Pedidos</a></li>
+					<li><a href="#">Mis Productos Deseados</a></li>
+					<li><a href="#">Opcion 1</a></li>
+					<li><a href="#">Opcion 2</a></li>
+				</ul>
+				<!-- /NAV -->
+			</div>
+			<!-- /responsive-nav -->
+		</div>
+		<!-- /container -->
+	</nav>
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- Products tab & slick -->
+				<h1>PRODUCTOS DESEADOS</h1>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

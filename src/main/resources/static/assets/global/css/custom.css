@@ -1,0 +1,6 @@
+@charset "ISO-8859-1";
+
+.line-vertical {
+	border-left: 6px solid green;
+	height: 500px;
+}

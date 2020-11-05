@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="views/front/index :: head">
+</head>
+<body>
+	<header th:replace="views/front/index :: header"></header>
+
+	<nav id="navigation" th:fragment="navigation">
+		<!-- container -->
+		<div class="container">
+			<!-- responsive-nav -->
+			<div id="responsive-nav">
+				<!-- NAV -->
+				<ul class="main-nav nav navbar-nav">
+					<li class="active"><a th:href="@{/pedidos/1}">Mis Pedidos</a></li>
+					<li><a href="#">Mis Productos Deseados</a></li>
+					<li><a href="#">Opcion 1</a></li>
+					<li><a href="#">Opcion 2</a></li>
+				</ul>
+				<!-- /NAV -->
+			</div>
+			<!-- /responsive-nav -->
+		</div>
+		<!-- /container -->
+	</nav>
+
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- Products tab & slick -->
+				<div class="col-md-4">
+					<div class="list-group">
+						<a href="#" class="list-group-item list-group-item-action active">Mis
+							pedidos</a> <a href="#"
+							class="list-group-item list-group-item-action">Dapibus ac
+							facilisis in</a> <a href="#"
+							class="list-group-item list-group-item-action">Morbi leo
+							risus</a> <a href="#" class="list-group-item list-group-item-action">Porta
+							ac consectetur ac</a> <a href="#"
+							class="list-group-item list-group-item-action disabled"
+							tabindex="-1" aria-disabled="true">Vestibulum at eros</a>
+					</div>
+				</div>
+				<!-- <div class="line-vertical"></div> -->
+<!-- 				<div class="col-md-8"> -->
+<!-- 					<p th:text="${listaPedidos.size() == 0 ? 'Aun no tiene pedidos' : 'Tiene pedidos'}"></p> -->
+<!-- 				</div> -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>
