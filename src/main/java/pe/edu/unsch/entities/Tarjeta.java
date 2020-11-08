@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,7 +26,7 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = "numero_tarjeta") })
 public class Tarjeta implements java.io.Serializable {
 
-	private int idtarjeta;
+	private Integer idtarjeta;
 	private String numeroTarjeta;
 	private String codVerificacionTarjeta;
 	private Date fechaDeposito;
@@ -36,9 +38,8 @@ public class Tarjeta implements java.io.Serializable {
 	public Tarjeta() {
 	}
 
-	public Tarjeta(int idtarjeta, String numeroTarjeta, String codVerificacionTarjeta, Date fechaDeposito,
-			BigDecimal montoDeposito, Date fechaVencimiento) {
-		this.idtarjeta = idtarjeta;
+	public Tarjeta(String numeroTarjeta, String codVerificacionTarjeta, Date fechaDeposito, BigDecimal montoDeposito,
+			Date fechaVencimiento) {
 		this.numeroTarjeta = numeroTarjeta;
 		this.codVerificacionTarjeta = codVerificacionTarjeta;
 		this.fechaDeposito = fechaDeposito;
@@ -46,9 +47,8 @@ public class Tarjeta implements java.io.Serializable {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
-	public Tarjeta(int idtarjeta, String numeroTarjeta, String codVerificacionTarjeta, Date fechaDeposito,
-			BigDecimal montoDeposito, Date fechaVencimiento, String nombre, Set<Pago> pagos) {
-		this.idtarjeta = idtarjeta;
+	public Tarjeta(String numeroTarjeta, String codVerificacionTarjeta, Date fechaDeposito, BigDecimal montoDeposito,
+			Date fechaVencimiento, String nombre, Set<Pago> pagos) {
 		this.numeroTarjeta = numeroTarjeta;
 		this.codVerificacionTarjeta = codVerificacionTarjeta;
 		this.fechaDeposito = fechaDeposito;
@@ -59,13 +59,14 @@ public class Tarjeta implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idtarjeta", unique = true, nullable = false)
-	public int getIdtarjeta() {
+	public Integer getIdtarjeta() {
 		return this.idtarjeta;
 	}
 
-	public void setIdtarjeta(int idtarjeta) {
+	public void setIdtarjeta(Integer idtarjeta) {
 		this.idtarjeta = idtarjeta;
 	}
 

@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,7 +25,7 @@ import javax.persistence.TemporalType;
 @Table(name = "pago", catalog = "marketplacebd_test")
 public class Pago implements java.io.Serializable {
 
-	private int idpago;
+	private Integer idpago;
 	private Tarjeta tarjeta;
 	private String tipoPago;
 	private Date fechaPago;
@@ -41,8 +43,7 @@ public class Pago implements java.io.Serializable {
 	public Pago() {
 	}
 
-	public Pago(int idpago, Tarjeta tarjeta, String tipoPago, Date fechaPago, BigDecimal monto, BigDecimal impuesto) {
-		this.idpago = idpago;
+	public Pago(Tarjeta tarjeta, String tipoPago, Date fechaPago, BigDecimal monto, BigDecimal impuesto) {
 		this.tarjeta = tarjeta;
 		this.tipoPago = tipoPago;
 		this.fechaPago = fechaPago;
@@ -50,11 +51,10 @@ public class Pago implements java.io.Serializable {
 		this.impuesto = impuesto;
 	}
 
-	public Pago(int idpago, Tarjeta tarjeta, String tipoPago, Date fechaPago, BigDecimal monto, BigDecimal impuesto,
+	public Pago(Tarjeta tarjeta, String tipoPago, Date fechaPago, BigDecimal monto, BigDecimal impuesto,
 			Set<DomiciliacionBancaria> domiciliacionBancarias, Set<TransferenciaBancaria> transferenciaBancarias,
 			Set<ContraReembolso> contraReembolsos, Set<Notificacion> notificacions, Set<Boleta> boletas,
 			Set<Venta> ventas, Set<Pedido> pedidos, Set<PagoPaypal> pagoPaypals) {
-		this.idpago = idpago;
 		this.tarjeta = tarjeta;
 		this.tipoPago = tipoPago;
 		this.fechaPago = fechaPago;
@@ -71,13 +71,14 @@ public class Pago implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idpago", unique = true, nullable = false)
-	public int getIdpago() {
+	public Integer getIdpago() {
 		return this.idpago;
 	}
 
-	public void setIdpago(int idpago) {
+	public void setIdpago(Integer idpago) {
 		this.idpago = idpago;
 	}
 

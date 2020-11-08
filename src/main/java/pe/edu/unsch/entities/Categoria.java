@@ -1,11 +1,13 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "categoria", catalog = "marketplacebd_test", uniqueConstraints = @UniqueConstraint(columnNames = "nombre"))
 public class Categoria implements java.io.Serializable {
 
-	private int idcategoria;
+	private Integer idcategoria;
 	private String nombre;
 	private String desrcipcion;
 	private Set<CategoriaSubcategoria> categoriaSubcategoriasForIdsubcategoria = new HashSet<CategoriaSubcategoria>(0);
@@ -28,16 +30,14 @@ public class Categoria implements java.io.Serializable {
 	public Categoria() {
 	}
 
-	public Categoria(int idcategoria, String nombre) {
-		this.idcategoria = idcategoria;
+	public Categoria(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public Categoria(int idcategoria, String nombre, String desrcipcion,
+	public Categoria(String nombre, String desrcipcion,
 			Set<CategoriaSubcategoria> categoriaSubcategoriasForIdsubcategoria,
 			Set<CategoriaProducto> categoriaProductos,
 			Set<CategoriaSubcategoria> categoriaSubcategoriasForIdcategoria) {
-		this.idcategoria = idcategoria;
 		this.nombre = nombre;
 		this.desrcipcion = desrcipcion;
 		this.categoriaSubcategoriasForIdsubcategoria = categoriaSubcategoriasForIdsubcategoria;
@@ -46,13 +46,14 @@ public class Categoria implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idcategoria", unique = true, nullable = false)
-	public int getIdcategoria() {
+	public Integer getIdcategoria() {
 		return this.idcategoria;
 	}
 
-	public void setIdcategoria(int idcategoria) {
+	public void setIdcategoria(Integer idcategoria) {
 		this.idcategoria = idcategoria;
 	}
 

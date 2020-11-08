@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,11 +1,13 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,7 @@ import javax.persistence.Table;
 @Table(name = "categoria_producto", catalog = "marketplacebd_test")
 public class CategoriaProducto implements java.io.Serializable {
 
-	private int idcategoriaproducto;
+	private Integer idcategoriaproducto;
 	private Categoria categoria;
 	private Producto producto;
 	private Set<ProductoComplementario> productoComplementarios = new HashSet<ProductoComplementario>(0);
@@ -28,15 +30,13 @@ public class CategoriaProducto implements java.io.Serializable {
 	public CategoriaProducto() {
 	}
 
-	public CategoriaProducto(int idcategoriaproducto, Categoria categoria, Producto producto) {
-		this.idcategoriaproducto = idcategoriaproducto;
+	public CategoriaProducto(Categoria categoria, Producto producto) {
 		this.categoria = categoria;
 		this.producto = producto;
 	}
 
-	public CategoriaProducto(int idcategoriaproducto, Categoria categoria, Producto producto,
+	public CategoriaProducto(Categoria categoria, Producto producto,
 			Set<ProductoComplementario> productoComplementarios, Set<SugerenciasCate> sugerenciasCates) {
-		this.idcategoriaproducto = idcategoriaproducto;
 		this.categoria = categoria;
 		this.producto = producto;
 		this.productoComplementarios = productoComplementarios;
@@ -44,13 +44,14 @@ public class CategoriaProducto implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idcategoriaproducto", unique = true, nullable = false)
-	public int getIdcategoriaproducto() {
+	public Integer getIdcategoriaproducto() {
 		return this.idcategoriaproducto;
 	}
 
-	public void setIdcategoriaproducto(int idcategoriaproducto) {
+	public void setIdcategoriaproducto(Integer idcategoriaproducto) {
 		this.idcategoriaproducto = idcategoriaproducto;
 	}
 

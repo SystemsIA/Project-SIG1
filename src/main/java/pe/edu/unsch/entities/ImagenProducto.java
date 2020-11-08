@@ -1,9 +1,11 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,32 +18,31 @@ import javax.persistence.Table;
 @Table(name = "imagen_producto", catalog = "marketplacebd_test")
 public class ImagenProducto implements java.io.Serializable {
 
-	private int idimagenproducto;
+	private Integer idimagenproducto;
 	private Producto producto;
 	private String direccion;
 
 	public ImagenProducto() {
 	}
 
-	public ImagenProducto(int idimagenproducto, Producto producto) {
-		this.idimagenproducto = idimagenproducto;
+	public ImagenProducto(Producto producto) {
 		this.producto = producto;
 	}
 
-	public ImagenProducto(int idimagenproducto, Producto producto, String direccion) {
-		this.idimagenproducto = idimagenproducto;
+	public ImagenProducto(Producto producto, String direccion) {
 		this.producto = producto;
 		this.direccion = direccion;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idimagenproducto", unique = true, nullable = false)
-	public int getIdimagenproducto() {
+	public Integer getIdimagenproducto() {
 		return this.idimagenproducto;
 	}
 
-	public void setIdimagenproducto(int idimagenproducto) {
+	public void setIdimagenproducto(Integer idimagenproducto) {
 		this.idimagenproducto = idimagenproducto;
 	}
 

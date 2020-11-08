@@ -1,15 +1,17 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,14 +21,13 @@ import javax.persistence.Table;
 @Table(name = "persona", catalog = "marketplacebd_test")
 public class Persona implements java.io.Serializable {
 
-	private int idpersona;
+	private Integer idpersona;
 	private Usuario usuario;
 	private String nombre;
 	private String apellido;
 	private String telefono;
 	private String foto;
 	private String correo;
-	private Set<PersonaRol> personaRols = new HashSet<PersonaRol>(0);
 	private Set<Producto> productos = new HashSet<Producto>(0);
 	private Set<Reporte> reportes = new HashSet<Reporte>(0);
 	private Set<PersonaDireccion> personaDireccions = new HashSet<PersonaDireccion>(0);
@@ -38,25 +39,21 @@ public class Persona implements java.io.Serializable {
 	public Persona() {
 	}
 
-	public Persona(int idpersona, Usuario usuario, String correo) {
-		this.idpersona = idpersona;
+	public Persona(Usuario usuario, String correo) {
 		this.usuario = usuario;
 		this.correo = correo;
 	}
 
-	public Persona(int idpersona, Usuario usuario, String nombre, String apellido, String telefono, String foto,
-			String correo, Set<PersonaRol> personaRols, Set<Producto> productos, Set<Reporte> reportes,
-			Set<PersonaDireccion> personaDireccions, Set<LibroReclamacion> libroReclamacions,
-			Set<ProductoMasVisto> productoMasVistos, Set<Notificacion> notificacions,
-			Set<ProductoFavorito> productoFavoritos) {
-		this.idpersona = idpersona;
+	public Persona(Usuario usuario, String nombre, String apellido, String telefono, String foto, String correo,
+			Set<Producto> productos, Set<Reporte> reportes, Set<PersonaDireccion> personaDireccions,
+			Set<LibroReclamacion> libroReclamacions, Set<ProductoMasVisto> productoMasVistos,
+			Set<Notificacion> notificacions, Set<ProductoFavorito> productoFavoritos) {
 		this.usuario = usuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.telefono = telefono;
 		this.foto = foto;
 		this.correo = correo;
-		this.personaRols = personaRols;
 		this.productos = productos;
 		this.reportes = reportes;
 		this.personaDireccions = personaDireccions;
@@ -67,17 +64,18 @@ public class Persona implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idpersona", unique = true, nullable = false)
-	public int getIdpersona() {
+	public Integer getIdpersona() {
 		return this.idpersona;
 	}
 
-	public void setIdpersona(int idpersona) {
+	public void setIdpersona(Integer idpersona) {
 		this.idpersona = idpersona;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idusuario", nullable = false)
 	public Usuario getUsuario() {
 		return this.usuario;
@@ -130,15 +128,6 @@ public class Persona implements java.io.Serializable {
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persona")
-	public Set<PersonaRol> getPersonaRols() {
-		return this.personaRols;
-	}
-
-	public void setPersonaRols(Set<PersonaRol> personaRols) {
-		this.personaRols = personaRols;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "persona")

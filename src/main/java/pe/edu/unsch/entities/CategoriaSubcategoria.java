@@ -1,9 +1,11 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,28 +18,27 @@ import javax.persistence.Table;
 @Table(name = "categoria_subcategoria", catalog = "marketplacebd_test")
 public class CategoriaSubcategoria implements java.io.Serializable {
 
-	private int idcategoriasubcategoria;
+	private Integer idcategoriasubcategoria;
 	private Categoria categoriaByIdsubcategoria;
 	private Categoria categoriaByIdcategoria;
 
 	public CategoriaSubcategoria() {
 	}
 
-	public CategoriaSubcategoria(int idcategoriasubcategoria, Categoria categoriaByIdsubcategoria,
-			Categoria categoriaByIdcategoria) {
-		this.idcategoriasubcategoria = idcategoriasubcategoria;
+	public CategoriaSubcategoria(Categoria categoriaByIdsubcategoria, Categoria categoriaByIdcategoria) {
 		this.categoriaByIdsubcategoria = categoriaByIdsubcategoria;
 		this.categoriaByIdcategoria = categoriaByIdcategoria;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idcategoriasubcategoria", unique = true, nullable = false)
-	public int getIdcategoriasubcategoria() {
+	public Integer getIdcategoriasubcategoria() {
 		return this.idcategoriasubcategoria;
 	}
 
-	public void setIdcategoriasubcategoria(int idcategoriasubcategoria) {
+	public void setIdcategoriasubcategoria(Integer idcategoriasubcategoria) {
 		this.idcategoriasubcategoria = idcategoriasubcategoria;
 	}
 

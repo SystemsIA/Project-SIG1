@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,8 +21,8 @@ public class Rol implements java.io.Serializable {
 	private int idrol;
 	private String nombre;
 	private Set<InfoVendedor> infoVendedors = new HashSet<InfoVendedor>(0);
+	private Set<RolUsuario> rolUsuarios = new HashSet<RolUsuario>(0);
 	private Set<RolOpcion> rolOpcions = new HashSet<RolOpcion>(0);
-	private Set<PersonaRol> personaRols = new HashSet<PersonaRol>(0);
 
 	public Rol() {
 	}
@@ -32,13 +32,13 @@ public class Rol implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	public Rol(int idrol, String nombre, Set<InfoVendedor> infoVendedors, Set<RolOpcion> rolOpcions,
-			Set<PersonaRol> personaRols) {
+	public Rol(int idrol, String nombre, Set<InfoVendedor> infoVendedors, Set<RolUsuario> rolUsuarios,
+			Set<RolOpcion> rolOpcions) {
 		this.idrol = idrol;
 		this.nombre = nombre;
 		this.infoVendedors = infoVendedors;
+		this.rolUsuarios = rolUsuarios;
 		this.rolOpcions = rolOpcions;
-		this.personaRols = personaRols;
 	}
 
 	@Id
@@ -71,21 +71,21 @@ public class Rol implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
+	public Set<RolUsuario> getRolUsuarios() {
+		return this.rolUsuarios;
+	}
+
+	public void setRolUsuarios(Set<RolUsuario> rolUsuarios) {
+		this.rolUsuarios = rolUsuarios;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
 	public Set<RolOpcion> getRolOpcions() {
 		return this.rolOpcions;
 	}
 
 	public void setRolOpcions(Set<RolOpcion> rolOpcions) {
 		this.rolOpcions = rolOpcions;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rol")
-	public Set<PersonaRol> getPersonaRols() {
-		return this.personaRols;
-	}
-
-	public void setPersonaRols(Set<PersonaRol> personaRols) {
-		this.personaRols = personaRols;
 	}
 
 }

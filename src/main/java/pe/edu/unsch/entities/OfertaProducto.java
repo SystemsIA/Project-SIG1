@@ -1,10 +1,12 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name = "oferta_producto", catalog = "marketplacebd_test")
 public class OfertaProducto implements java.io.Serializable {
 
-	private long idofertaproducto;
+	private Long idofertaproducto;
 	private Producto producto;
 	private String descripcion;
 	private float precioOferta;
@@ -32,9 +34,8 @@ public class OfertaProducto implements java.io.Serializable {
 	public OfertaProducto() {
 	}
 
-	public OfertaProducto(long idofertaproducto, Producto producto, String descripcion, float precioOferta,
-			Date fechaInicio, Date fechaLimite, Date fechaCreacion, boolean estado) {
-		this.idofertaproducto = idofertaproducto;
+	public OfertaProducto(Producto producto, String descripcion, float precioOferta, Date fechaInicio, Date fechaLimite,
+			Date fechaCreacion, boolean estado) {
 		this.producto = producto;
 		this.descripcion = descripcion;
 		this.precioOferta = precioOferta;
@@ -44,9 +45,8 @@ public class OfertaProducto implements java.io.Serializable {
 		this.estado = estado;
 	}
 
-	public OfertaProducto(long idofertaproducto, Producto producto, String descripcion, float precioOferta,
-			Date fechaInicio, Date fechaLimite, Date fechaCreacion, boolean estado, Integer valoracionProducto) {
-		this.idofertaproducto = idofertaproducto;
+	public OfertaProducto(Producto producto, String descripcion, float precioOferta, Date fechaInicio, Date fechaLimite,
+			Date fechaCreacion, boolean estado, Integer valoracionProducto) {
 		this.producto = producto;
 		this.descripcion = descripcion;
 		this.precioOferta = precioOferta;
@@ -58,13 +58,14 @@ public class OfertaProducto implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idofertaproducto", unique = true, nullable = false)
-	public long getIdofertaproducto() {
+	public Long getIdofertaproducto() {
 		return this.idofertaproducto;
 	}
 
-	public void setIdofertaproducto(long idofertaproducto) {
+	public void setIdofertaproducto(Long idofertaproducto) {
 		this.idofertaproducto = idofertaproducto;
 	}
 

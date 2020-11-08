@@ -1,11 +1,13 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "seguimiento_pedido", catalog = "marketplacebd_test")
 public class SeguimientoPedido implements java.io.Serializable {
 
-	private int idseguimientopedido;
+	private Integer idseguimientopedido;
 	private String tiposeguimiento;
 	private String estado;
 	private Set<Pedido> pedidos = new HashSet<Pedido>(0);
@@ -25,26 +27,25 @@ public class SeguimientoPedido implements java.io.Serializable {
 	public SeguimientoPedido() {
 	}
 
-	public SeguimientoPedido(int idseguimientopedido, String tiposeguimiento) {
-		this.idseguimientopedido = idseguimientopedido;
+	public SeguimientoPedido(String tiposeguimiento) {
 		this.tiposeguimiento = tiposeguimiento;
 	}
 
-	public SeguimientoPedido(int idseguimientopedido, String tiposeguimiento, String estado, Set<Pedido> pedidos) {
-		this.idseguimientopedido = idseguimientopedido;
+	public SeguimientoPedido(String tiposeguimiento, String estado, Set<Pedido> pedidos) {
 		this.tiposeguimiento = tiposeguimiento;
 		this.estado = estado;
 		this.pedidos = pedidos;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idseguimientopedido", unique = true, nullable = false)
-	public int getIdseguimientopedido() {
+	public Integer getIdseguimientopedido() {
 		return this.idseguimientopedido;
 	}
 
-	public void setIdseguimientopedido(int idseguimientopedido) {
+	public void setIdseguimientopedido(Integer idseguimientopedido) {
 		this.idseguimientopedido = idseguimientopedido;
 	}
 

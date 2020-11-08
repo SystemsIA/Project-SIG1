@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -7,10 +7,13 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +26,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "usuario", catalog = "marketplacebd_test", uniqueConstraints = @UniqueConstraint(columnNames = "usuario"))
 public class Usuario implements java.io.Serializable {
 
-	private int idusuario;
+	private Integer idusuario;
 	private CompradorFrecuente compradorFrecuente;
 	private String usuario;
 	private String password;
@@ -32,26 +35,27 @@ public class Usuario implements java.io.Serializable {
 	private Set<Comentario> comentarios = new HashSet<Comentario>(0);
 	private Set<Carrito> carritos = new HashSet<Carrito>(0);
 	private Set<ProductoDeseado> productoDeseados = new HashSet<ProductoDeseado>(0);
+	private Set<RolUsuario> rolUsuarios = new HashSet<RolUsuario>(0);
 	private Set<Reclamo> reclamos = new HashSet<Reclamo>(0);
 	private Set<Pedido> pedidos = new HashSet<Pedido>(0);
 	private Set<ProductoValorado> productoValorados = new HashSet<ProductoValorado>(0);
-	private Set<Persona> personas = new HashSet<Persona>(0);
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario")
+	private Persona persona;
 
 	public Usuario() {
 	}
 
-	public Usuario(int idusuario, String usuario, String password, String historialDesUsuario) {
-		this.idusuario = idusuario;
+	public Usuario(String usuario, String password, String historialDesUsuario) {
 		this.usuario = usuario;
 		this.password = password;
 		this.historialDesUsuario = historialDesUsuario;
 	}
 
-	public Usuario(int idusuario, CompradorFrecuente compradorFrecuente, String usuario, String password,
-			Date ultimoLogin, String historialDesUsuario, Set<Comentario> comentarios, Set<Carrito> carritos,
-			Set<ProductoDeseado> productoDeseados, Set<Reclamo> reclamos, Set<Pedido> pedidos,
-			Set<ProductoValorado> productoValorados, Set<Persona> personas) {
-		this.idusuario = idusuario;
+	public Usuario(CompradorFrecuente compradorFrecuente, String usuario, String password, Date ultimoLogin,
+			String historialDesUsuario, Set<Comentario> comentarios, Set<Carrito> carritos,
+			Set<ProductoDeseado> productoDeseados, Set<RolUsuario> rolUsuarios, Set<Reclamo> reclamos,
+			Set<Pedido> pedidos, Set<ProductoValorado> productoValorados, Persona persona) {
 		this.compradorFrecuente = compradorFrecuente;
 		this.usuario = usuario;
 		this.password = password;
@@ -60,20 +64,22 @@ public class Usuario implements java.io.Serializable {
 		this.comentarios = comentarios;
 		this.carritos = carritos;
 		this.productoDeseados = productoDeseados;
+		this.rolUsuarios = rolUsuarios;
 		this.reclamos = reclamos;
 		this.pedidos = pedidos;
 		this.productoValorados = productoValorados;
-		this.personas = personas;
+		this.persona = persona;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idusuario", unique = true, nullable = false)
-	public int getIdusuario() {
+	public Integer getIdusuario() {
 		return this.idusuario;
 	}
 
-	public void setIdusuario(int idusuario) {
+	public void setIdusuario(Integer idusuario) {
 		this.idusuario = idusuario;
 	}
 
@@ -152,6 +158,15 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	public Set<RolUsuario> getRolUsuarios() {
+		return this.rolUsuarios;
+	}
+
+	public void setRolUsuarios(Set<RolUsuario> rolUsuarios) {
+		this.rolUsuarios = rolUsuarios;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<Reclamo> getReclamos() {
 		return this.reclamos;
 	}
@@ -178,13 +193,12 @@ public class Usuario implements java.io.Serializable {
 		this.productoValorados = productoValorados;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-	public Set<Persona> getPersonas() {
-		return this.personas;
+	public Persona getPersona() {
+		return this.persona;
 	}
 
-	public void setPersonas(Set<Persona> personas) {
-		this.personas = personas;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 }

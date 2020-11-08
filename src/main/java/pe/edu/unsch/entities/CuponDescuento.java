@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +22,7 @@ import javax.persistence.Table;
 @Table(name = "cupon_descuento", catalog = "marketplacebd_test")
 public class CuponDescuento implements java.io.Serializable {
 
-	private int idcupon;
+	private Integer idcupon;
 	private Producto producto;
 	private BigDecimal valorDescuento;
 	private Set<Carrito> carritos = new HashSet<Carrito>(0);
@@ -28,27 +30,26 @@ public class CuponDescuento implements java.io.Serializable {
 	public CuponDescuento() {
 	}
 
-	public CuponDescuento(int idcupon, Producto producto, BigDecimal valorDescuento) {
-		this.idcupon = idcupon;
+	public CuponDescuento(Producto producto, BigDecimal valorDescuento) {
 		this.producto = producto;
 		this.valorDescuento = valorDescuento;
 	}
 
-	public CuponDescuento(int idcupon, Producto producto, BigDecimal valorDescuento, Set<Carrito> carritos) {
-		this.idcupon = idcupon;
+	public CuponDescuento(Producto producto, BigDecimal valorDescuento, Set<Carrito> carritos) {
 		this.producto = producto;
 		this.valorDescuento = valorDescuento;
 		this.carritos = carritos;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idcupon", unique = true, nullable = false)
-	public int getIdcupon() {
+	public Integer getIdcupon() {
 		return this.idcupon;
 	}
 
-	public void setIdcupon(int idcupon) {
+	public void setIdcupon(Integer idcupon) {
 		this.idcupon = idcupon;
 	}
 

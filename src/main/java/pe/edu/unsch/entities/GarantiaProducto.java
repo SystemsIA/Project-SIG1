@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,7 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name = "garantia_producto", catalog = "marketplacebd_test")
 public class GarantiaProducto implements java.io.Serializable {
 
-	private int idgarantiaproducto;
+	private Integer idgarantiaproducto;
 	private Date inicioGarantia;
 	private Date finalGarantia;
 	private String descripcion;
@@ -29,16 +31,13 @@ public class GarantiaProducto implements java.io.Serializable {
 	public GarantiaProducto() {
 	}
 
-	public GarantiaProducto(int idgarantiaproducto, Date inicioGarantia, Date finalGarantia, String descripcion) {
-		this.idgarantiaproducto = idgarantiaproducto;
+	public GarantiaProducto(Date inicioGarantia, Date finalGarantia, String descripcion) {
 		this.inicioGarantia = inicioGarantia;
 		this.finalGarantia = finalGarantia;
 		this.descripcion = descripcion;
 	}
 
-	public GarantiaProducto(int idgarantiaproducto, Date inicioGarantia, Date finalGarantia, String descripcion,
-			Set<Producto> productos) {
-		this.idgarantiaproducto = idgarantiaproducto;
+	public GarantiaProducto(Date inicioGarantia, Date finalGarantia, String descripcion, Set<Producto> productos) {
 		this.inicioGarantia = inicioGarantia;
 		this.finalGarantia = finalGarantia;
 		this.descripcion = descripcion;
@@ -46,13 +45,14 @@ public class GarantiaProducto implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idgarantiaproducto", unique = true, nullable = false)
-	public int getIdgarantiaproducto() {
+	public Integer getIdgarantiaproducto() {
 		return this.idgarantiaproducto;
 	}
 
-	public void setIdgarantiaproducto(int idgarantiaproducto) {
+	public void setIdgarantiaproducto(Integer idgarantiaproducto) {
 		this.idgarantiaproducto = idgarantiaproducto;
 	}
 

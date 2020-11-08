@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,7 +25,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "producto", catalog = "marketplacebd_test", uniqueConstraints = @UniqueConstraint(columnNames = "codigo"))
 public class Producto implements java.io.Serializable {
 
-	private long idproducto;
+	private Long idproducto;
 	private GarantiaProducto garantiaProducto;
 	private LibroReclamacion libroReclamacion;
 	private Persona persona;
@@ -53,10 +55,9 @@ public class Producto implements java.io.Serializable {
 	public Producto() {
 	}
 
-	public Producto(long idproducto, GarantiaProducto garantiaProducto, LibroReclamacion libroReclamacion,
-			String codigo, String nombre, String descripcion, BigDecimal precioUnitario, byte cantidad,
-			boolean estadoseleccionoferta, String marca, int cantidadventas) {
-		this.idproducto = idproducto;
+	public Producto(GarantiaProducto garantiaProducto, LibroReclamacion libroReclamacion, String codigo, String nombre,
+			String descripcion, BigDecimal precioUnitario, byte cantidad, boolean estadoseleccionoferta, String marca,
+			int cantidadventas) {
 		this.garantiaProducto = garantiaProducto;
 		this.libroReclamacion = libroReclamacion;
 		this.codigo = codigo;
@@ -69,8 +70,8 @@ public class Producto implements java.io.Serializable {
 		this.cantidadventas = cantidadventas;
 	}
 
-	public Producto(long idproducto, GarantiaProducto garantiaProducto, LibroReclamacion libroReclamacion,
-			Persona persona, String codigo, String nombre, String descripcion, BigDecimal precioUnitario, byte cantidad,
+	public Producto(GarantiaProducto garantiaProducto, LibroReclamacion libroReclamacion, Persona persona,
+			String codigo, String nombre, String descripcion, BigDecimal precioUnitario, byte cantidad,
 			boolean estadoseleccionoferta, Boolean destacado, String marca, int cantidadventas, Set<Carrito> carritos,
 			Set<CuponDescuento> cuponDescuentos, Set<ImagenProducto> imagenProductos,
 			Set<CategoriaProducto> categoriaProductos, Set<HistorialPedido> historialPedidos,
@@ -78,7 +79,6 @@ public class Producto implements java.io.Serializable {
 			Set<ProductoValorado> productoValorados, Set<ProductoMasVisto> productoMasVistos,
 			Set<ProductoDeseado> productoDeseados, Set<OfertaEspecial> ofertaEspecials_1,
 			Set<OfertaProducto> ofertaProductos, Set<ProductoFavorito> productoFavoritos) {
-		this.idproducto = idproducto;
 		this.garantiaProducto = garantiaProducto;
 		this.libroReclamacion = libroReclamacion;
 		this.persona = persona;
@@ -107,13 +107,14 @@ public class Producto implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idproducto", unique = true, nullable = false)
-	public long getIdproducto() {
+	public Long getIdproducto() {
 		return this.idproducto;
 	}
 
-	public void setIdproducto(long idproducto) {
+	public void setIdproducto(Long idproducto) {
 		this.idproducto = idproducto;
 	}
 

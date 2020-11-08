@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 4 Nov 2020, 21:14:55 by Hibernate Tools 5.1.10.Final
+// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +26,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "comprobante_venta", catalog = "marketplacebd_test", uniqueConstraints = @UniqueConstraint(columnNames = "numero_ruc"))
 public class ComprobanteVenta implements java.io.Serializable {
 
-	private int idcomprobanteventa;
+	private Integer idcomprobanteventa;
 	private BoletaVenta boletaVenta;
 	private Factura factura;
 	private Date fecha;
@@ -36,17 +38,15 @@ public class ComprobanteVenta implements java.io.Serializable {
 	public ComprobanteVenta() {
 	}
 
-	public ComprobanteVenta(int idcomprobanteventa, Date fecha, BigDecimal igv, BigDecimal subtotal, String numeroRuc) {
-		this.idcomprobanteventa = idcomprobanteventa;
+	public ComprobanteVenta(Date fecha, BigDecimal igv, BigDecimal subtotal, String numeroRuc) {
 		this.fecha = fecha;
 		this.igv = igv;
 		this.subtotal = subtotal;
 		this.numeroRuc = numeroRuc;
 	}
 
-	public ComprobanteVenta(int idcomprobanteventa, BoletaVenta boletaVenta, Factura factura, Date fecha,
-			BigDecimal igv, BigDecimal subtotal, String numeroRuc, Set<Pedido> pedidos) {
-		this.idcomprobanteventa = idcomprobanteventa;
+	public ComprobanteVenta(BoletaVenta boletaVenta, Factura factura, Date fecha, BigDecimal igv, BigDecimal subtotal,
+			String numeroRuc, Set<Pedido> pedidos) {
 		this.boletaVenta = boletaVenta;
 		this.factura = factura;
 		this.fecha = fecha;
@@ -57,13 +57,14 @@ public class ComprobanteVenta implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idcomprobanteventa", unique = true, nullable = false)
-	public int getIdcomprobanteventa() {
+	public Integer getIdcomprobanteventa() {
 		return this.idcomprobanteventa;
 	}
 
-	public void setIdcomprobanteventa(int idcomprobanteventa) {
+	public void setIdcomprobanteventa(Integer idcomprobanteventa) {
 		this.idcomprobanteventa = idcomprobanteventa;
 	}
 

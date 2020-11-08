@@ -32,7 +32,6 @@
   <table-filter match-catalog="marketplacebd_test" match-name="pedido"/>
   <table-filter match-catalog="marketplacebd_test" match-name="persona"/>
   <table-filter match-catalog="marketplacebd_test" match-name="persona_direccion"/>
-  <table-filter match-catalog="marketplacebd_test" match-name="persona_rol"/>
   <table-filter match-catalog="marketplacebd_test" match-name="premio"/>
   <table-filter match-catalog="marketplacebd_test" match-name="producto"/>
   <table-filter match-catalog="marketplacebd_test" match-name="producto_complementario"/>
@@ -46,6 +45,7 @@
   <table-filter match-catalog="marketplacebd_test" match-name="reporte"/>
   <table-filter match-catalog="marketplacebd_test" match-name="rol"/>
   <table-filter match-catalog="marketplacebd_test" match-name="rol_opcion"/>
+  <table-filter match-catalog="marketplacebd_test" match-name="rol_usuario"/>
   <table-filter match-catalog="marketplacebd_test" match-name="seguimiento_pedido"/>
   <table-filter match-catalog="marketplacebd_test" match-name="sub_modulo"/>
   <table-filter match-catalog="marketplacebd_test" match-name="sugerenciahistorial"/>
