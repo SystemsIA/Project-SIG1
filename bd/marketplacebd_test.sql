@@ -851,7 +851,6 @@ CREATE TABLE `persona` (
   `correo` varchar(45) NOT NULL,
   `idusuario` int NOT NULL,
   PRIMARY KEY (`idpersona`),
-  UNIQUE KEY `idCuentaUsuario_UNIQUE` (`idpersona`),
   KEY `fk_usuario2_idx` (`idusuario`),
   CONSTRAINT `fk_usuario2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -892,36 +891,6 @@ CREATE TABLE `persona_direccion` (
 LOCK TABLES `persona_direccion` WRITE;
 /*!40000 ALTER TABLE `persona_direccion` DISABLE KEYS */;
 /*!40000 ALTER TABLE `persona_direccion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `persona_rol`
---
-
-DROP TABLE IF EXISTS `persona_rol`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `persona_rol` (
-  `idpersonarol` int NOT NULL AUTO_INCREMENT,
-  `estado` tinyint NOT NULL,
-  `idpersona` int NOT NULL,
-  `idrol` int NOT NULL,
-  PRIMARY KEY (`idpersonarol`),
-  UNIQUE KEY `idPersonaRol_UNIQUE` (`idpersonarol`),
-  KEY `fk_persona_rol_persona1_idx` (`idpersona`),
-  KEY `fk_persona_rol_rol1_idx` (`idrol`),
-  CONSTRAINT `fk_persona_rol_persona1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`) ON DELETE CASCADE,
-  CONSTRAINT `fk_persona_rol_rol1` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `persona_rol`
---
-
-LOCK TABLES `persona_rol` WRITE;
-/*!40000 ALTER TABLE `persona_rol` DISABLE KEYS */;
-/*!40000 ALTER TABLE `persona_rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1292,6 +1261,36 @@ LOCK TABLES `rol_opcion` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `rol_usuario`
+--
+
+DROP TABLE IF EXISTS `rol_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rol_usuario` (
+  `idrolusuario` int NOT NULL AUTO_INCREMENT,
+  `estado` tinyint NOT NULL,
+  `idrol` int NOT NULL,
+  `idusuario` int NOT NULL,
+  PRIMARY KEY (`idrolusuario`),
+  UNIQUE KEY `idrolusuario_UNIQUE` (`idrolusuario`),
+  KEY `fk_rol_usuario_idx` (`idrol`),
+  KEY `fk_usuario_rol_idx` (`idusuario`) /*!80000 INVISIBLE */,
+  CONSTRAINT `fk_rol_usuario_id` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`),
+  CONSTRAINT `fk_usuario_rol_id` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rol_usuario`
+--
+
+LOCK TABLES `rol_usuario` WRITE;
+/*!40000 ALTER TABLE `rol_usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rol_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `seguimiento_pedido`
 --
 
@@ -1553,4 +1552,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-04 21:16:21
+-- Dump completed on 2020-11-08  2:10:09
