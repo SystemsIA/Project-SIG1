@@ -55,6 +55,13 @@ public class Producto implements java.io.Serializable {
 	public Producto() {
 	}
 
+	public Producto(Long idproducto, String nombre, BigDecimal precioUnitario, byte cantidad) {
+		this.idproducto = idproducto;
+		this.nombre = nombre;
+		this.precioUnitario = precioUnitario;
+		this.cantidad = cantidad;
+	}
+
 	public Producto(GarantiaProducto garantiaProducto, LibroReclamacion libroReclamacion, String codigo, String nombre,
 			String descripcion, BigDecimal precioUnitario, byte cantidad, boolean estadoseleccionoferta, String marca,
 			int cantidadventas) {
@@ -68,6 +75,7 @@ public class Producto implements java.io.Serializable {
 		this.estadoseleccionoferta = estadoseleccionoferta;
 		this.marca = marca;
 		this.cantidadventas = cantidadventas;
+
 	}
 
 	public Producto(GarantiaProducto garantiaProducto, LibroReclamacion libroReclamacion, Persona persona,
