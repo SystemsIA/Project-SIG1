@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: marketplacebd_test
+-- Host: localhost    Database: marketplacebd_test
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -231,6 +231,7 @@ CREATE TABLE `comprador_frecuente` (
 
 LOCK TABLES `comprador_frecuente` WRITE;
 /*!40000 ALTER TABLE `comprador_frecuente` DISABLE KEYS */;
+INSERT INTO `comprador_frecuente` VALUES (1,37,1,2.1);
 /*!40000 ALTER TABLE `comprador_frecuente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +418,7 @@ CREATE TABLE `garantia_producto` (
   `descripcion` varchar(300) NOT NULL,
   PRIMARY KEY (`idgarantiaproducto`),
   UNIQUE KEY `idGarantiaProducto_UNIQUE` (`idgarantiaproducto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -426,6 +427,7 @@ CREATE TABLE `garantia_producto` (
 
 LOCK TABLES `garantia_producto` WRITE;
 /*!40000 ALTER TABLE `garantia_producto` DISABLE KEYS */;
+INSERT INTO `garantia_producto` VALUES (1,'2020-12-10 21:20:00','2020-12-10 21:20:00','Producto Garantizadoxdxd');
 /*!40000 ALTER TABLE `garantia_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -474,7 +476,7 @@ CREATE TABLE `imagen_producto` (
   UNIQUE KEY `idImagenProducto_UNIQUE` (`idimagenproducto`),
   KEY `fk_imagen_producto_producto1_idx` (`idproducto`),
   CONSTRAINT `fk_imagen_producto_producto1` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -483,6 +485,7 @@ CREATE TABLE `imagen_producto` (
 
 LOCK TABLES `imagen_producto` WRITE;
 /*!40000 ALTER TABLE `imagen_producto` DISABLE KEYS */;
+INSERT INTO `imagen_producto` VALUES (1,'/img/ovni.jpg',1),(2,'/img/th.jpg',1),(3,'/img/mod3.jpg',1);
 /*!40000 ALTER TABLE `imagen_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -534,7 +537,7 @@ CREATE TABLE `libro_reclamacion` (
   UNIQUE KEY `LibroReclamaciones_UNIQUE` (`idlibroreclamaciones`),
   KEY `fk_LibroReclamaciones_persona1_idx` (`idpersona`),
   CONSTRAINT `fk_LibroReclamaciones_persona1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -543,6 +546,7 @@ CREATE TABLE `libro_reclamacion` (
 
 LOCK TABLES `libro_reclamacion` WRITE;
 /*!40000 ALTER TABLE `libro_reclamacion` DISABLE KEYS */;
+INSERT INTO `libro_reclamacion` VALUES (1,'2020-12-10 21:20:00',1,1);
 /*!40000 ALTER TABLE `libro_reclamacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -853,7 +857,7 @@ CREATE TABLE `persona` (
   PRIMARY KEY (`idpersona`),
   KEY `fk_usuario2_idx` (`idusuario`),
   CONSTRAINT `fk_usuario2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -862,6 +866,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
+INSERT INTO `persona` VALUES (1,'Pablo','Lepzilin','961090046','prueba','pablito@gmail.com',1);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -950,7 +955,7 @@ CREATE TABLE `producto` (
   CONSTRAINT `fk_producto_garantia_producto1` FOREIGN KEY (`idgarantiaproducto`) REFERENCES `garantia_producto` (`idgarantiaproducto`) ON DELETE CASCADE,
   CONSTRAINT `fk_producto_LibroReclamaciones1` FOREIGN KEY (`idlibroreclamaciones`) REFERENCES `libro_reclamacion` (`idlibroreclamaciones`),
   CONSTRAINT `fk_producto_persona1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -959,6 +964,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES (1,'RF3','ProductoA','El mejor producto para acabar con la ansiedad',15.00,15,1,_binary '','paltomiel',12,1,1,1);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1474,7 +1480,7 @@ CREATE TABLE `usuario` (
   UNIQUE KEY `idusuario_UNIQUE` (`idusuario`),
   KEY `fk_usuario_comprador_frecuente1_idx` (`idcompradorfrecuente`),
   CONSTRAINT `fk_usuario_comprador_frecuente1` FOREIGN KEY (`idcompradorfrecuente`) REFERENCES `comprador_frecuente` (`idcompradorfrecuente`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1483,6 +1489,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'Pablo','Lepzilin','2020-12-11 02:20:00',1,'prueba');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1552,4 +1559,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-08  2:10:09
+-- Dump completed on 2020-11-18  0:48:55
