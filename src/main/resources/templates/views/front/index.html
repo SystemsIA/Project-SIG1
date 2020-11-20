@@ -256,18 +256,18 @@
 				<!-- Products tab & slick -->
 				<div class="col-md-12">
 					<div class="row">
+					<h1 th:text="${productosDestacados.size() != 0} ? 'PRODUCTOS DESTACADOS': 'NO HAY PRODUCTO DESTACADOS'"></h1>
 						<div class="products-tabs">
 							<!-- tab -->
 							<div id="tab1" class="tab-pane active">
 								<div class="products-slick" data-nav="#slick-nav-1">
-
 									<!-- product -->
 
 									<div th:each="productoDestacado : ${productosDestacados}"
 										class="product">
 										<div class="product-img">
 											<img
-												th:src="${productoDestacado.imagenProductos[0].direccion}">
+												th:src="${productoDestacado.imagenProductos.size() == 0} ? '':${productoDestacado.imagenProductos[0].direccion} ">
 											<div class="product-label">
 												<span class="sale">-30%</span> <span class="new">NEW</span>
 											</div>
