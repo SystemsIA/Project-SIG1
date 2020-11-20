@@ -12,15 +12,10 @@ import pe.edu.unsch.entities.Producto;
 
 @Repository
 public interface ProductoDao extends JpaRepository<Producto, Serializable> {
-	
-	@Query( value = " SELECT prod FROM Producto prod"
-					+ " WHERE prod.idproducto = ?1 ")
+
+	@Query(value = " SELECT prod FROM Producto prod" + " WHERE prod.idproducto = ?1 ")
 	Producto mostrardetalles(long idproducto);
 
-	//	new Producto(pr.idproducto as idproducto,pr.nombre as nombre,pr.precioUnitario as precioUnitario,pr.cantidad as cantidad)
-	
-	@Query(value = "select pr "
-			+ "from Producto pr "
-			+ "where pr.destacado=1")
+	@Query(value = "select pr " + "from Producto pr " + "where pr.destacado=1")
 	List<Producto> listaProductoDestacados();
 }
