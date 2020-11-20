@@ -56,3 +56,7 @@ INSERT INTO `marketplacebd_test`.`rol_usuario` (`estado`, `idrol`, `idusuario`) 
 INSERT INTO `marketplacebd_test`.`rol_usuario` (`estado`, `idrol`, `idusuario`) VALUES ('1', '2', '4');
 INSERT INTO `marketplacebd_test`.`rol_usuario` (`estado`, `idrol`, `idusuario`) VALUES ('1', '2', '5');
 
+-- IMAGEN_PRODUCTO2
+INSERT INTO `marketplacebd_test`.`imagen_producto` (`direccion`, `idproducto`) VALUES ('/img/product2/xiaomi1.png', '2');
+INSERT INTO `marketplacebd_test`.`imagen_producto` (`direccion`, `idproducto`) VALUES ('/img/product2/xiaomi2.png', '2');
+INSERT INTO `marketplacebd_test`.`imagen_producto` (`direccion`, `idproducto`) VALUES ('/img/product2/xiaomi3.png', '2');
