@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class CategoriController {
 
-	@GetMapping("/Categori")
+	@GetMapping("/categori")
 	public String index() {
 		return "views/admin/Categori/index";
 	}
