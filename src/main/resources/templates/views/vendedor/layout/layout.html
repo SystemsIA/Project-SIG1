@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:fragment="head" th:remove="tag">
+<meta charset="UTF-8">
+<title>POS</title>
+<link rel="stylesheet" th:href="@{/assets/vendedor/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/assets/vendedor/font-awesome/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/assets/vendedor/css/nprogress.css}" />
+<link rel="stylesheet" th:href="@{/assets/vendedor/css/green.css}" />
+<link rel="stylesheet" th:href="@{/assets/vendedor/css/custom.min.css}" />
+</head>
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<!-- sidebar menu -->
+			<div th:fragment="menu" class="col-md-3 left_col">
+				<div th:replace="views/vendedor/layout/menu"></div>
+			</div>
+			<!-- /sidebar menu -->
+
+			<!-- top navigation -->
+			<div th:fragment="header" class="top_nav">
+				<div th:replace="views/vendedor/layout/header"></div>
+			</div>
+			<!-- /top navigation -->
+
+			<!-- page content -->
+			<div class="right_col" role="main"></div>
+			<!-- /page content -->
+
+			<!-- footer content -->
+			<footer th:fragment="footer" th:remove="tag">
+				<div class="pull-right">
+					Vista Vendedor - Desarrollado por <a
+						href="https://twitter.com/chupetin">Chupetin</a>
+				</div>
+				<div class="clearfix"></div>
+				<script th:src="@{/assets/vendedor/js/jquery.min.js}"></script>
+				<script th:src="@{/assets/vendedor/js/bootstrap.min.js}"></script>
+				<script th:src="@{/assets/vendedor/js/fastclick.js}"></script>
+				<script th:src="@{/assets/vendedor/js/nprogress.js}"></script>
+				<script th:src="@{/assets/vendedor/js/custom.min.js}"></script>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
+</body>
+</html>
