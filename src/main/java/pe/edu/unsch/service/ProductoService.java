@@ -9,5 +9,9 @@ public interface ProductoService {
 	Producto mostrardetalles(long idproducto);
 
 	List<Producto> listaProductoDestacados();
+	
+	
+	//ProductosVendedor
+	List<Producto> listaProductosVendedor(Integer idPersona);
 
 }

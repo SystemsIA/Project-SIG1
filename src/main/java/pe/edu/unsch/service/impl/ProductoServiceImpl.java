@@ -24,8 +24,14 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
-	public List<Producto> listaProductoDestacados() {
+	public List<Producto> listaProductoDestacados(){
 		// TODO Auto-generated method stub
 		return productodao.listaProductoDestacados();
+	}
+	
+	// ProductosVendedor
+	@Override
+	public List<Producto> listaProductosVendedor(Integer idPersona) {
+		return productodao.listaProductosVendedor(idPersona);
 	}
 }

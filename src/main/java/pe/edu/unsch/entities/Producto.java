@@ -113,6 +113,19 @@ public class Producto implements java.io.Serializable {
 		this.ofertaProductos = ofertaProductos;
 		this.productoFavoritos = productoFavoritos;
 	}
+	
+	
+
+	public Producto(String codigo, String nombre, String descripcion, byte cantidad,BigDecimal precioUnitario, 
+			String marca, Persona persona) {
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precioUnitario = precioUnitario;
+		this.cantidad = cantidad;
+		this.marca = marca;
+		this.persona=persona;
+	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
