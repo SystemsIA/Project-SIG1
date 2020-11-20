@@ -43,18 +43,9 @@
 			<optional>true</optional>
 		</dependency>
 		
-		
-		<!-- <dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-<<<<<<< HEAD
-=======
-			<version>8.0.16</version>
-		</dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
->>>>>>> 08b282f0ec6a80b140f119751676bed23632f412
 			<version>5.1.46</version>
 		</dependency>
 		
