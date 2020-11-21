@@ -1,9 +1,11 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "reclamo", catalog = "marketplacebd_test")
 public class Reclamo implements java.io.Serializable {
 
-	private int idreclamo;
+	private Integer idreclamo;
 	private Usuario usuario;
 	private String descripcion;
 	private String tipoReclamo;
@@ -24,21 +26,21 @@ public class Reclamo implements java.io.Serializable {
 	public Reclamo() {
 	}
 
-	public Reclamo(int idreclamo, Usuario usuario, String descripcion, String tipoReclamo) {
-		this.idreclamo = idreclamo;
+	public Reclamo(Usuario usuario, String descripcion, String tipoReclamo) {
 		this.usuario = usuario;
 		this.descripcion = descripcion;
 		this.tipoReclamo = tipoReclamo;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idreclamo", unique = true, nullable = false)
-	public int getIdreclamo() {
+	public Integer getIdreclamo() {
 		return this.idreclamo;
 	}
 
-	public void setIdreclamo(int idreclamo) {
+	public void setIdreclamo(Integer idreclamo) {
 		this.idreclamo = idreclamo;
 	}
 

@@ -1,9 +1,11 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "rol_usuario", catalog = "marketplacebd_test")
 public class RolUsuario implements java.io.Serializable {
 
-	private int idrolusuario;
+	private Integer idrolusuario;
 	private Rol rol;
 	private Usuario usuario;
 	private byte estado;
@@ -24,21 +26,21 @@ public class RolUsuario implements java.io.Serializable {
 	public RolUsuario() {
 	}
 
-	public RolUsuario(int idrolusuario, Rol rol, Usuario usuario, byte estado) {
-		this.idrolusuario = idrolusuario;
+	public RolUsuario(Rol rol, Usuario usuario, byte estado) {
 		this.rol = rol;
 		this.usuario = usuario;
 		this.estado = estado;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idrolusuario", unique = true, nullable = false)
-	public int getIdrolusuario() {
+	public Integer getIdrolusuario() {
 		return this.idrolusuario;
 	}
 
-	public void setIdrolusuario(int idrolusuario) {
+	public void setIdrolusuario(Integer idrolusuario) {
 		this.idrolusuario = idrolusuario;
 	}
 

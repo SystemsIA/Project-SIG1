@@ -1,9 +1,11 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "venta_reporte", catalog = "marketplacebd_test")
 public class VentaReporte implements java.io.Serializable {
 
-	private int idventareporte;
+	private Integer idventareporte;
 	private Reporte reporte;
 	private Venta venta;
 	private String tipoReporte;
@@ -24,21 +26,21 @@ public class VentaReporte implements java.io.Serializable {
 	public VentaReporte() {
 	}
 
-	public VentaReporte(int idventareporte, Reporte reporte, Venta venta, String tipoReporte) {
-		this.idventareporte = idventareporte;
+	public VentaReporte(Reporte reporte, Venta venta, String tipoReporte) {
 		this.reporte = reporte;
 		this.venta = venta;
 		this.tipoReporte = tipoReporte;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idventareporte", unique = true, nullable = false)
-	public int getIdventareporte() {
+	public Integer getIdventareporte() {
 		return this.idventareporte;
 	}
 
-	public void setIdventareporte(int idventareporte) {
+	public void setIdventareporte(Integer idventareporte) {
 		this.idventareporte = idventareporte;
 	}
 

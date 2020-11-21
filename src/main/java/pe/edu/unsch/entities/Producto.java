@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -42,8 +42,10 @@ public class Producto implements java.io.Serializable {
 	private Set<CuponDescuento> cuponDescuentos = new HashSet<CuponDescuento>(0);
 	private Set<ImagenProducto> imagenProductos = new HashSet<ImagenProducto>(0);
 	private Set<CategoriaProducto> categoriaProductos = new HashSet<CategoriaProducto>(0);
+	private Set<Productosjuntos> productosjuntosesForProducto2 = new HashSet<Productosjuntos>(0);
 	private Set<HistorialPedido> historialPedidos = new HashSet<HistorialPedido>(0);
 	private Set<OfertaEspecial> ofertaEspecials = new HashSet<OfertaEspecial>(0);
+	private Set<Productosjuntos> productosjuntosesForProducto1 = new HashSet<Productosjuntos>(0);
 	private Set<Sugerenciahistorial> sugerenciahistorials = new HashSet<Sugerenciahistorial>(0);
 	private Set<ProductoValorado> productoValorados = new HashSet<ProductoValorado>(0);
 	private Set<ProductoMasVisto> productoMasVistos = new HashSet<ProductoMasVisto>(0);
@@ -51,6 +53,10 @@ public class Producto implements java.io.Serializable {
 	private Set<OfertaEspecial> ofertaEspecials_1 = new HashSet<OfertaEspecial>(0);
 	private Set<OfertaProducto> ofertaProductos = new HashSet<OfertaProducto>(0);
 	private Set<ProductoFavorito> productoFavoritos = new HashSet<ProductoFavorito>(0);
+	
+	public Producto(String nombre) {
+	  this.nombre = nombre;
+	}
 
 	public Producto() {
 	}
@@ -74,8 +80,9 @@ public class Producto implements java.io.Serializable {
 			String codigo, String nombre, String descripcion, BigDecimal precioUnitario, byte cantidad,
 			boolean estadoseleccionoferta, Boolean destacado, String marca, int cantidadventas, Set<Carrito> carritos,
 			Set<CuponDescuento> cuponDescuentos, Set<ImagenProducto> imagenProductos,
-			Set<CategoriaProducto> categoriaProductos, Set<HistorialPedido> historialPedidos,
-			Set<OfertaEspecial> ofertaEspecials, Set<Sugerenciahistorial> sugerenciahistorials,
+			Set<CategoriaProducto> categoriaProductos, Set<Productosjuntos> productosjuntosesForProducto2,
+			Set<HistorialPedido> historialPedidos, Set<OfertaEspecial> ofertaEspecials,
+			Set<Productosjuntos> productosjuntosesForProducto1, Set<Sugerenciahistorial> sugerenciahistorials,
 			Set<ProductoValorado> productoValorados, Set<ProductoMasVisto> productoMasVistos,
 			Set<ProductoDeseado> productoDeseados, Set<OfertaEspecial> ofertaEspecials_1,
 			Set<OfertaProducto> ofertaProductos, Set<ProductoFavorito> productoFavoritos) {
@@ -95,8 +102,10 @@ public class Producto implements java.io.Serializable {
 		this.cuponDescuentos = cuponDescuentos;
 		this.imagenProductos = imagenProductos;
 		this.categoriaProductos = categoriaProductos;
+		this.productosjuntosesForProducto2 = productosjuntosesForProducto2;
 		this.historialPedidos = historialPedidos;
 		this.ofertaEspecials = ofertaEspecials;
+		this.productosjuntosesForProducto1 = productosjuntosesForProducto1;
 		this.sugerenciahistorials = sugerenciahistorials;
 		this.productoValorados = productoValorados;
 		this.productoMasVistos = productoMasVistos;
@@ -265,6 +274,15 @@ public class Producto implements java.io.Serializable {
 		this.categoriaProductos = categoriaProductos;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productoByProducto2")
+	public Set<Productosjuntos> getProductosjuntosesForProducto2() {
+		return this.productosjuntosesForProducto2;
+	}
+
+	public void setProductosjuntosesForProducto2(Set<Productosjuntos> productosjuntosesForProducto2) {
+		this.productosjuntosesForProducto2 = productosjuntosesForProducto2;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
 	public Set<HistorialPedido> getHistorialPedidos() {
 		return this.historialPedidos;
@@ -281,6 +299,15 @@ public class Producto implements java.io.Serializable {
 
 	public void setOfertaEspecials(Set<OfertaEspecial> ofertaEspecials) {
 		this.ofertaEspecials = ofertaEspecials;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productoByProducto1")
+	public Set<Productosjuntos> getProductosjuntosesForProducto1() {
+		return this.productosjuntosesForProducto1;
+	}
+
+	public void setProductosjuntosesForProducto1(Set<Productosjuntos> productosjuntosesForProducto1) {
+		this.productosjuntosesForProducto1 = productosjuntosesForProducto1;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")

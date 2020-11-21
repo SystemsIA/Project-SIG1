@@ -1,9 +1,11 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,27 +18,27 @@ import javax.persistence.Table;
 @Table(name = "producto_complementario", catalog = "marketplacebd_test")
 public class ProductoComplementario implements java.io.Serializable {
 
-	private int idproductocomplementario;
+	private Integer idproductocomplementario;
 	private CategoriaProducto categoriaProducto;
 	private String categoria;
 
 	public ProductoComplementario() {
 	}
 
-	public ProductoComplementario(int idproductocomplementario, CategoriaProducto categoriaProducto, String categoria) {
-		this.idproductocomplementario = idproductocomplementario;
+	public ProductoComplementario(CategoriaProducto categoriaProducto, String categoria) {
 		this.categoriaProducto = categoriaProducto;
 		this.categoria = categoria;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idproductocomplementario", unique = true, nullable = false)
-	public int getIdproductocomplementario() {
+	public Integer getIdproductocomplementario() {
 		return this.idproductocomplementario;
 	}
 
-	public void setIdproductocomplementario(int idproductocomplementario) {
+	public void setIdproductocomplementario(Integer idproductocomplementario) {
 		this.idproductocomplementario = idproductocomplementario;
 	}
 
