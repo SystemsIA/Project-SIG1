@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,7 +25,7 @@ import javax.persistence.TemporalType;
 @Table(name = "venta", catalog = "marketplacebd_test")
 public class Venta implements java.io.Serializable {
 
-	private int idventa;
+	private Integer idventa;
 	private Pago pago;
 	private Date fechaVenta;
 	private BigDecimal monto;
@@ -32,15 +34,13 @@ public class Venta implements java.io.Serializable {
 	public Venta() {
 	}
 
-	public Venta(int idventa, Pago pago, Date fechaVenta, BigDecimal monto) {
-		this.idventa = idventa;
+	public Venta(Pago pago, Date fechaVenta, BigDecimal monto) {
 		this.pago = pago;
 		this.fechaVenta = fechaVenta;
 		this.monto = monto;
 	}
 
-	public Venta(int idventa, Pago pago, Date fechaVenta, BigDecimal monto, Set<VentaReporte> ventaReportes) {
-		this.idventa = idventa;
+	public Venta(Pago pago, Date fechaVenta, BigDecimal monto, Set<VentaReporte> ventaReportes) {
 		this.pago = pago;
 		this.fechaVenta = fechaVenta;
 		this.monto = monto;
@@ -48,13 +48,14 @@ public class Venta implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idventa", unique = true, nullable = false)
-	public int getIdventa() {
+	public Integer getIdventa() {
 		return this.idventa;
 	}
 
-	public void setIdventa(int idventa) {
+	public void setIdventa(Integer idventa) {
 		this.idventa = idventa;
 	}
 

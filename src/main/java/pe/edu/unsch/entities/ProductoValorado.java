@@ -1,9 +1,11 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "producto_valorado", catalog = "marketplacebd_test")
 public class ProductoValorado implements java.io.Serializable {
 
-	private int idproductovalorado;
+	private Integer idproductovalorado;
 	private Producto producto;
 	private Usuario usuario;
 	private Boolean deseado;
@@ -25,15 +27,12 @@ public class ProductoValorado implements java.io.Serializable {
 	public ProductoValorado() {
 	}
 
-	public ProductoValorado(int idproductovalorado, Producto producto, Usuario usuario) {
-		this.idproductovalorado = idproductovalorado;
+	public ProductoValorado(Producto producto, Usuario usuario) {
 		this.producto = producto;
 		this.usuario = usuario;
 	}
 
-	public ProductoValorado(int idproductovalorado, Producto producto, Usuario usuario, Boolean deseado,
-			Boolean recomendado) {
-		this.idproductovalorado = idproductovalorado;
+	public ProductoValorado(Producto producto, Usuario usuario, Boolean deseado, Boolean recomendado) {
 		this.producto = producto;
 		this.usuario = usuario;
 		this.deseado = deseado;
@@ -41,13 +40,14 @@ public class ProductoValorado implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idproductovalorado", unique = true, nullable = false)
-	public int getIdproductovalorado() {
+	public Integer getIdproductovalorado() {
 		return this.idproductovalorado;
 	}
 
-	public void setIdproductovalorado(int idproductovalorado) {
+	public void setIdproductovalorado(Integer idproductovalorado) {
 		this.idproductovalorado = idproductovalorado;
 	}
 

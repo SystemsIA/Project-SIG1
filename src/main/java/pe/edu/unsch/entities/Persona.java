@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -75,7 +75,7 @@ public class Persona implements java.io.Serializable {
 		this.idpersona = idpersona;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idusuario", nullable = false)
 	public Usuario getUsuario() {
 		return this.usuario;

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: marketplacebd_test
 -- ------------------------------------------------------
--- Server version	8.0.20
+-- Server version	8.0.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -111,7 +111,7 @@ CREATE TABLE `categoria` (
   PRIMARY KEY (`idcategoria`),
   UNIQUE KEY `idTipoProducto_UNIQUE` (`idcategoria`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,6 +120,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` VALUES (1,'Celulares y Telefónos','Equipos portátiles para estar siempre conectado'),(2,'Cámaras y Accesorios','Para capturar todo buen momento'),(3,'Consolas y Videojuegos','Relajamiento'),(4,'Computación ','Para conectarse con el mundo'),(5,'Electrónica, Audio y Video','TV\'s, Radios, accesorios para dj\'s '),(6,'Relojes y joyas','Para estar a la moda');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +140,7 @@ CREATE TABLE `categoria_producto` (
   KEY `fk_producto_has_categoria_producto1_idx` (`idproducto`),
   CONSTRAINT `fk_producto_has_categoria_categoria1` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE CASCADE,
   CONSTRAINT `fk_producto_has_categoria_producto1` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,6 +149,7 @@ CREATE TABLE `categoria_producto` (
 
 LOCK TABLES `categoria_producto` WRITE;
 /*!40000 ALTER TABLE `categoria_producto` DISABLE KEYS */;
+INSERT INTO `categoria_producto` VALUES (2,6,6),(3,7,1),(4,8,1),(5,9,1),(6,10,6),(7,11,5),(8,12,5),(9,13,5),(10,14,3),(11,15,3),(12,16,3);
 /*!40000 ALTER TABLE `categoria_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +233,7 @@ CREATE TABLE `comprador_frecuente` (
 
 LOCK TABLES `comprador_frecuente` WRITE;
 /*!40000 ALTER TABLE `comprador_frecuente` DISABLE KEYS */;
-INSERT INTO `comprador_frecuente` VALUES (1,37,1,2.1);
+INSERT INTO `comprador_frecuente` VALUES (1,37,1,2.1),(2,14,2,2.5);
 /*!40000 ALTER TABLE `comprador_frecuente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,7 +478,7 @@ CREATE TABLE `imagen_producto` (
   UNIQUE KEY `idImagenProducto_UNIQUE` (`idimagenproducto`),
   KEY `fk_imagen_producto_producto1_idx` (`idproducto`),
   CONSTRAINT `fk_imagen_producto_producto1` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -485,7 +487,7 @@ CREATE TABLE `imagen_producto` (
 
 LOCK TABLES `imagen_producto` WRITE;
 /*!40000 ALTER TABLE `imagen_producto` DISABLE KEYS */;
-INSERT INTO `imagen_producto` VALUES (1,'/img/ovni.jpg',1),(2,'/img/th.jpg',1),(3,'/img/mod3.jpg',1);
+INSERT INTO `imagen_producto` VALUES (4,'/img/reloj1.jpg',6),(5,'/img/reloj2.jpg',6),(6,'/img/reloj3.jpg',6),(7,'/img/product2/xiaomi1.png',7),(8,'/img/product2/xiaomi2.png',7),(9,'/img/product2/xiaomi3.png',7),(10,'/img/mando1.jpg',14),(11,'/img/mando2.jpg',14),(12,'/img/mando3.jpg',14),(13,'/img/cable1.jpg',15),(14,'/img/cable2.jpg',15),(15,'/img/cable3.jpg',15),(16,'/img/carga1.jpg',16),(17,'/img/carga2.jpg',16),(18,'/img/carga3.jpg',16);
 /*!40000 ALTER TABLE `imagen_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -546,7 +548,7 @@ CREATE TABLE `libro_reclamacion` (
 
 LOCK TABLES `libro_reclamacion` WRITE;
 /*!40000 ALTER TABLE `libro_reclamacion` DISABLE KEYS */;
-INSERT INTO `libro_reclamacion` VALUES (1,'2020-12-10 21:20:00',1,1);
+INSERT INTO `libro_reclamacion` VALUES (1,'2020-12-10 21:20:00',1,2);
 /*!40000 ALTER TABLE `libro_reclamacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -857,7 +859,7 @@ CREATE TABLE `persona` (
   PRIMARY KEY (`idpersona`),
   KEY `fk_usuario2_idx` (`idusuario`),
   CONSTRAINT `fk_usuario2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -866,7 +868,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'Pablo','Lepzilin','961090046','prueba','pablito@gmail.com',1);
+INSERT INTO `persona` VALUES (2,'Pablo','Lepzilin','961090046','prueba','pablito@gmail.com',1),(3,'Juan','Mendoza','985425789','prueba','juan@gmail.com',2),(4,'Lorenzo','Prado','987461233','prueba','lorenzo@gmail.com',3),(5,'Lina','Frozen','987456235','prueba','lina@outlook.com',4),(6,'Akasha','Queen','915948753','prueba','aksha@gmail.com',5);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -955,7 +957,7 @@ CREATE TABLE `producto` (
   CONSTRAINT `fk_producto_garantia_producto1` FOREIGN KEY (`idgarantiaproducto`) REFERENCES `garantia_producto` (`idgarantiaproducto`) ON DELETE CASCADE,
   CONSTRAINT `fk_producto_LibroReclamaciones1` FOREIGN KEY (`idlibroreclamaciones`) REFERENCES `libro_reclamacion` (`idlibroreclamaciones`),
   CONSTRAINT `fk_producto_persona1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -964,7 +966,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'RF3','ProductoA','El mejor producto para acabar con la ansiedad',15.00,15,1,_binary '','paltomiel',12,1,1,1);
+INSERT INTO `producto` VALUES (6,'RF3','ProductoA','El mejor producto para acabar con la ansiedad',15.00,15,1,_binary '','paltomiel',12,1,1,2),(7,'RF4','Xiaomi Redmi Note 9','128gb 4gb Ram Version Global Sellado',799.00,40,1,_binary '','Xiaomi',4,1,1,2),(8,'RF5','Samsung Galaxy M11','velocidad del CPU 1.8GHz',529.00,12,1,_binary '','Samsung',2,1,1,2),(9,'RF6','Apple iPhone 11 64gb','Apple iPhone 11 64gb',2799.00,10,1,_binary '','Apple',3,1,1,2),(10,'RF7','Smartwatch Apple Watch Se','Smartwatch Apple Watch Se 40mm Gps',1479.00,50,1,_binary '','Apple',2,1,1,2),(11,'RF8','Smart Tv Samsung Led 4k Uhd 65','Smart Tv Samsung Led 4k Uhd 65 Un65tu8500gxpe',2999.00,3,1,_binary '','Samsung',2,1,1,3),(12,'RF9','Sony Tv 55 Led 4k Uhd','Sony Tv 55 Led 4k Uhd Con Hdr Android Tv Xbr-55x955g',3999.00,10,1,_binary '','Sony',4,1,1,3),(13,'RF10','Parlante Portátil Extra Bass','Parlante Portátil Extra Bass Xb43 Con Bluetooth',469.00,30,1,_binary '','Sony',21,1,1,3),(14,'RF11','DualShock 4 ','El mejor producto para acabar con la ansiedad',300.00,15,1,_binary '','SONY',12,1,1,2),(15,'RF12','PowerA - Cable de carga USB para PlayStation 4','la mejor carga para tu ps4',50.00,50,1,_binary '','SONY',12,1,1,2),(16,'RF13','PS4 Estación de doble carga para controlador de Sony PlayStation ','la mejor carga para tu ps4',50.00,50,1,_binary '','BEBONCOOL PS4',12,1,1,2);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1131,6 +1133,35 @@ LOCK TABLES `producto_valorado` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `productosjuntos`
+--
+
+DROP TABLE IF EXISTS `productosjuntos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productosjuntos` (
+  `idproductosjuntos` bigint NOT NULL,
+  `producto1` bigint NOT NULL,
+  `producto2` bigint NOT NULL,
+  PRIMARY KEY (`idproductosjuntos`),
+  KEY `fk_productosjuntos_producto3_idx` (`producto1`),
+  KEY `fk_productosjuntos_producto4_idx` (`producto2`),
+  CONSTRAINT `fk_productosjuntos_producto3` FOREIGN KEY (`producto1`) REFERENCES `producto` (`idproducto`),
+  CONSTRAINT `fk_productosjuntos_producto4` FOREIGN KEY (`producto2`) REFERENCES `producto` (`idproducto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productosjuntos`
+--
+
+LOCK TABLES `productosjuntos` WRITE;
+/*!40000 ALTER TABLE `productosjuntos` DISABLE KEYS */;
+INSERT INTO `productosjuntos` VALUES (1,14,15),(2,14,16),(3,15,14),(4,16,14);
+/*!40000 ALTER TABLE `productosjuntos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `reclamo`
 --
 
@@ -1234,6 +1265,7 @@ CREATE TABLE `rol` (
 
 LOCK TABLES `rol` WRITE;
 /*!40000 ALTER TABLE `rol` DISABLE KEYS */;
+INSERT INTO `rol` VALUES (1,'Administrador'),(3,'Comprador'),(2,'Vendedor');
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1284,7 +1316,7 @@ CREATE TABLE `rol_usuario` (
   KEY `fk_usuario_rol_idx` (`idusuario`) /*!80000 INVISIBLE */,
   CONSTRAINT `fk_rol_usuario_id` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`),
   CONSTRAINT `fk_usuario_rol_id` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1293,6 +1325,7 @@ CREATE TABLE `rol_usuario` (
 
 LOCK TABLES `rol_usuario` WRITE;
 /*!40000 ALTER TABLE `rol_usuario` DISABLE KEYS */;
+INSERT INTO `rol_usuario` VALUES (1,1,2,1),(2,1,2,2),(3,1,2,3),(4,1,2,4),(5,1,2,5);
 /*!40000 ALTER TABLE `rol_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1480,7 +1513,7 @@ CREATE TABLE `usuario` (
   UNIQUE KEY `idusuario_UNIQUE` (`idusuario`),
   KEY `fk_usuario_comprador_frecuente1_idx` (`idcompradorfrecuente`),
   CONSTRAINT `fk_usuario_comprador_frecuente1` FOREIGN KEY (`idcompradorfrecuente`) REFERENCES `comprador_frecuente` (`idcompradorfrecuente`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1489,7 +1522,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Pablo','Lepzilin','2020-12-11 02:20:00',1,'prueba');
+INSERT INTO `usuario` VALUES (1,'Pablo','Lepzilin','2020-12-11 02:20:00',1,'prueba'),(2,'Juan','juan','2020-11-11 02:20:00',1,'prueba'),(3,'Lorenzo','lorenzo','2020-10-11 02:35:00',1,'prueba'),(4,'Lina','lina','2020-10-10 02:40:00',2,'prueba'),(5,'Akasha','akasha','2020-10-09 02:00:00',2,'prueba');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1559,4 +1592,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-18  0:48:55
+-- Dump completed on 2020-11-21  1:10:34

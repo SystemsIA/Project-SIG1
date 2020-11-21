@@ -1,9 +1,11 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "regalo", catalog = "marketplacebd_test")
 public class Regalo implements java.io.Serializable {
 
-	private int idregalo;
+	private Integer idregalo;
 	private CompradorFrecuente compradorFrecuente;
 	private String descripcionRegalo;
 	private String categoria;
@@ -25,9 +27,8 @@ public class Regalo implements java.io.Serializable {
 	public Regalo() {
 	}
 
-	public Regalo(int idregalo, CompradorFrecuente compradorFrecuente, String descripcionRegalo, String categoria,
+	public Regalo(CompradorFrecuente compradorFrecuente, String descripcionRegalo, String categoria,
 			String puntosRequeridos) {
-		this.idregalo = idregalo;
 		this.compradorFrecuente = compradorFrecuente;
 		this.descripcionRegalo = descripcionRegalo;
 		this.categoria = categoria;
@@ -35,13 +36,14 @@ public class Regalo implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idregalo", unique = true, nullable = false)
-	public int getIdregalo() {
+	public Integer getIdregalo() {
 		return this.idregalo;
 	}
 
-	public void setIdregalo(int idregalo) {
+	public void setIdregalo(Integer idregalo) {
 		this.idregalo = idregalo;
 	}
 

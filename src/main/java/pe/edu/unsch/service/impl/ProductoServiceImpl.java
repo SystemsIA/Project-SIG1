@@ -1,4 +1,4 @@
-package pe.edu.unsch.service;
+package pe.edu.unsch.service.impl;
 
 import java.util.List;
 
@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.unsch.dao.ProductoDao;
 import pe.edu.unsch.entities.Producto;
+import pe.edu.unsch.service.ProductoService;
 
 @Service
 @Transactional
-public class ProductoServiceImpl implements ProductoService{
+public class ProductoServiceImpl implements ProductoService {
 
 	@Autowired
 	private ProductoDao productodao;
@@ -23,8 +24,14 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 
 	@Override
-	public List<Producto> listaProductoDestacados() {
+	public List<Producto> listaProductoDestacados(){
 		// TODO Auto-generated method stub
 		return productodao.listaProductoDestacados();
-	}	
+	}
+	
+	// ProductosVendedor
+	@Override
+	public List<Producto> listaProductosVendedor(Integer idPersona) {
+		return productodao.listaProductosVendedor(idPersona);
+	}
 }
