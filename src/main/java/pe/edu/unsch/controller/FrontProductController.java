@@ -24,7 +24,7 @@ public class FrontProductController {
 	@GetMapping(value = "/product/{id_producto}")
 	public String product( @PathVariable( name = "id_producto") long id_producto, Model model){
 		Producto detalleprod = productoService.mostrardetalles(id_producto);
-		
+
 		List<Producto> listarelacionjuntos = listaRelacion.ListarProductosJuntosH(id_producto);
 		model.addAttribute("detalleprod", detalleprod);
 		model.addAttribute("ProductosJuntos", listarelacionjuntos); 
