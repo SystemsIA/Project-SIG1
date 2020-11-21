@@ -2,8 +2,11 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
+
 	<table-filter match-catalog="marketplacebd_test"
 		match-name="boleta" />
+	<table-filter match-catalog="marketplacebd_test"
+		match-name="boleta_venta" />
 	<table-filter match-catalog="marketplacebd_test"
 		match-name="boleta_venta" />
 	<table-filter match-catalog="marketplacebd_test"
@@ -78,6 +81,8 @@
 		match-name="producto_mas_visto" />
 	<table-filter match-catalog="marketplacebd_test"
 		match-name="producto_valorado" />
+	<table-filter match-catalog="marketplacebd_test"
+		match-name="productosjuntos" />
 	<table-filter match-catalog="marketplacebd_test"
 		match-name="reclamo" />
 	<table-filter match-catalog="marketplacebd_test"

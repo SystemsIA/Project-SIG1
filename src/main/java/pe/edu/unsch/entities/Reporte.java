@@ -1,5 +1,5 @@
 package pe.edu.unsch.entities;
-// Generated 8 Nov 2020, 01:58:22 by Hibernate Tools 5.1.10.Final
+// Generated 19-nov-2020 18:08:16 by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +24,7 @@ import javax.persistence.TemporalType;
 @Table(name = "reporte", catalog = "marketplacebd_test")
 public class Reporte implements java.io.Serializable {
 
-	private int idreporte;
+	private Integer idreporte;
 	private Persona persona;
 	private Date fecha;
 	private Set<VentaReporte> ventaReportes = new HashSet<VentaReporte>(0);
@@ -30,26 +32,25 @@ public class Reporte implements java.io.Serializable {
 	public Reporte() {
 	}
 
-	public Reporte(int idreporte, Persona persona) {
-		this.idreporte = idreporte;
+	public Reporte(Persona persona) {
 		this.persona = persona;
 	}
 
-	public Reporte(int idreporte, Persona persona, Date fecha, Set<VentaReporte> ventaReportes) {
-		this.idreporte = idreporte;
+	public Reporte(Persona persona, Date fecha, Set<VentaReporte> ventaReportes) {
 		this.persona = persona;
 		this.fecha = fecha;
 		this.ventaReportes = ventaReportes;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "idreporte", unique = true, nullable = false)
-	public int getIdreporte() {
+	public Integer getIdreporte() {
 		return this.idreporte;
 	}
 
-	public void setIdreporte(int idreporte) {
+	public void setIdreporte(Integer idreporte) {
 		this.idreporte = idreporte;
 	}
 
