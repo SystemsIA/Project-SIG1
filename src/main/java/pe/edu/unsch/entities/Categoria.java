@@ -11,6 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -23,6 +24,8 @@ public class Categoria implements java.io.Serializable {
 	private Integer idcategoria;
 	private String nombre;
 	private String desrcipcion;
+	private Integer nProductos;
+	private Integer proVendidos;
 	private Set<CategoriaSubcategoria> categoriaSubcategoriasForIdsubcategoria = new HashSet<CategoriaSubcategoria>(0);
 	private Set<CategoriaProducto> categoriaProductos = new HashSet<CategoriaProducto>(0);
 	private Set<CategoriaSubcategoria> categoriaSubcategoriasForIdcategoria = new HashSet<CategoriaSubcategoria>(0);
@@ -43,6 +46,23 @@ public class Categoria implements java.io.Serializable {
 		this.categoriaSubcategoriasForIdsubcategoria = categoriaSubcategoriasForIdsubcategoria;
 		this.categoriaProductos = categoriaProductos;
 		this.categoriaSubcategoriasForIdcategoria = categoriaSubcategoriasForIdcategoria;
+	}
+
+	/** Constructor para mostrar las categorias con productos **/
+	public Categoria(Integer idcategoria, String nombre, String desrcipcion, Integer nProductos, Integer proVendidos) {
+		this.idcategoria = idcategoria;
+		this.nombre = nombre;
+		this.desrcipcion = desrcipcion;
+		this.nProductos = nProductos;
+		this.proVendidos = proVendidos;
+	}
+
+	
+	public Categoria(Integer idcategoria, String nombre, String desrcipcion) {
+		super();
+		this.idcategoria = idcategoria;
+		this.nombre = nombre;
+		this.desrcipcion = desrcipcion;
 	}
 
 	@Id
@@ -73,6 +93,26 @@ public class Categoria implements java.io.Serializable {
 
 	public void setDesrcipcion(String desrcipcion) {
 		this.desrcipcion = desrcipcion;
+	}
+
+	// set and get nProductos proVendidos
+	
+	@Transient
+	public Integer getnProductos() {
+		return nProductos;
+	}
+
+	public void setnProductos(Integer nProductos) {
+		this.nProductos = nProductos;
+	}
+
+	@Transient
+	public Integer getProVendidos() {
+		return proVendidos;
+	}
+
+	public void setProVendidos(Integer proVendidos) {
+		this.proVendidos = proVendidos;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoriaByIdsubcategoria")
