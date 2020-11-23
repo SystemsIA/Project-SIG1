@@ -814,71 +814,81 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 							<div class="portlet-body">
 
+
+								<!--  TABLA DATOS INICIO -->
 								<div class="table-scrollable table-scrollable-borderless">
+
 									<table class="table table-hover table-light">
 										<thead>
 											<tr class="uppercase">
-												<th>Nombre Categoria</th>
-												<th>Descripcion</th>
+												<th>Código</th>
+												<th>Categoria</th>
+												<th>Descripción</th>
 												<th>N° Productos</th>
 												<th>N° Ventas</th>
 												<th colspan="2">Ajustes</th>
 											</tr>
 										</thead>
-										<tr>
+										<tbody>
+											<tr th:each="c:${categorias}">
+												<td th:text="${c.idcategoria}"></td>
+												<td th:text="${c.nombre}"></td>
+												<td th:text="${c.desrcipcion}"></td>
+												<td th:text="${c.nProductos}"></td>
+												<td th:text="${c.proVendidos}"></td>
+		
+												<td class="fit"><a class="btn btn-circle blue-madison"
+													data-toggle="modal" href="#basic"> Modificar <i
+														class="fa fa-pencil"></i>
+												</a></td>
+												<td class="fit"><a class="btn btn-circle green-meadow"
+													th:href="@{/admin/home}">Eliminar</a></td>
+											</tr>
+											<!-- 	<tr>
 
-											<td>Almohadas</td>
-											<td>hhvbhvnsjksvdnvernvkvjsn</td>
-											<td>45</td>
-											<td>124</td>
-											<td class="fit"><a class="btn btn-circle blue-madison"
-												data-toggle="modal" href="#basic"> Modificar <i
-													class="fa fa-pencil"></i>
-											</a></td>
-											<td class="fit"><a class="btn btn-circle green-meadow"
-												th:href="@{/admin/home}">Eliminar</a></td>
-										</tr>
-										<tr>
+												<td>conejos</td>
+												<td>hbvuiowicbjhknvjkcvhbvcns,vns</td>
+												<td>45</td>
+												<td>124</td>
+												<td class="fit"><a class="btn btn-circle blue-madison"
+													data-toggle="modal" href="#basic"> Modificar <i
+														class="fa fa-pencil"></i>
+												</a></td>
+												<td class="fit"><a class="btn btn-circle green-meadow"
+													th:href="@{/admin/home}">Eliminar</a></td>
+											</tr>
+											<tr>
 
-											<td>conejos</td>
-											<td>hbvuiowicbjhknvjkcvhbvcns,vns</td>
-											<td>45</td>
-											<td>124</td>
-											<td class="fit"><a class="btn btn-circle blue-madison"
-												data-toggle="modal" href="#basic"> Modificar <i
-													class="fa fa-pencil"></i>
-											</a></td>
-											<td class="fit"><a class="btn btn-circle green-meadow"
-												th:href="@{/admin/home}">Eliminar</a></td>
-										</tr>
-										<tr>
+												<td>Cocina</td>
+												<td>utencilios de cocina xd</td>
+												<td>45</td>
+												<td>124</td>
+												<td class="fit"><a class="btn btn-circle blue-madison"
+													data-toggle="modal" href="#basic"> Modificar <i
+														class="fa fa-pencil"></i>
+												</a></td>
+												<td class="fit"><a class="btn btn-circle green-meadow"
+													th:href="@{/admin/home}">Eliminar</a></td>
+											</tr>
+											<tr>
 
-											<td>Cocina</td>
-											<td>utencilios de cocina xd</td>
-											<td>45</td>
-											<td>124</td>
-											<td class="fit"><a class="btn btn-circle blue-madison"
-												data-toggle="modal" href="#basic"> Modificar <i
-													class="fa fa-pencil"></i>
-											</a></td>
-											<td class="fit"><a class="btn btn-circle green-meadow"
-												th:href="@{/admin/home}">Eliminar</a></td>
-										</tr>
-										<tr>
-
-											<td>Zapatos</td>
-											<td>Cazado de vestir dama, caballero o niño</td>
-											<td>45</td>
-											<td>124</td>
-											<td class="fit"><a class="btn btn-circle blue-madison"
-												data-toggle="modal" href="#basic"> Modificar <i
-													class="fa fa-pencil"></i>
-											</a></td>
-											<td class="fit"><a class="btn btn-circle green-meadow"
-												th:href="@{/admin/home}">Eliminar</a></td>
-										</tr>
+												<td>Zapatos</td>
+												<td>Cazado de vestir dama, caballero o niño</td>
+												<td>45</td>
+												<td>124</td>
+												<td class="fit"><a class="btn btn-circle blue-madison"
+													data-toggle="modal" href="#basic"> Modificar <i
+														class="fa fa-pencil"></i>
+												</a></td>
+												<td class="fit"><a class="btn btn-circle green-meadow"
+													th:href="@{/admin/home}">Eliminar</a></td>
+											</tr> -->
+										</tbody>
 									</table>
 								</div>
+								<!--  TABLA DATOS FIN-->
+
+
 							</div>
 						</div>
 						<!-- END PORTLET-->
