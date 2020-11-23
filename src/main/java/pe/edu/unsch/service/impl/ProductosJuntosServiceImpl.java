@@ -1,4 +1,4 @@
-package pe.edu.unsch.service;
+package pe.edu.unsch.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.unsch.dao.ProductosJuntosDao;
 import pe.edu.unsch.entities.Producto;
+import pe.edu.unsch.service.ProductosJuntosService;
 
 
 @Repository("productoJuntosService")
