@@ -1,6 +1,6 @@
 <div class="left_col scroll-view">
 	<div class="navbar nav_title" style="border: 0;">
-		<a href="#" class="site_title"><i class="fa fa-paw"></i>
+		<a th:href="@{/seller/home}" class="site_title"><i class="fa fa-paw"></i>
 		<!-- <a href="index.html" class="site_title"><i class="fa fa-paw"></i> -->
 			<span>Vendedor</span></a>
 	</div>
@@ -61,14 +61,14 @@
 						productos menos vendidos
 						productos mas vendidos
 					 -->
-					 <li><a><i class="fa fa-clone"></i> Inicio <span
+					 <li><a th:href="@{/seller/home}"><i class="fa fa-clone"></i> Inicio <span
 						></span></a>
 					</li>
 				<li><a><i class="fa fa-pencil"></i> Gestión de Productos 
 				<span></span></a>
 					</li>
 					
-					<li><a><i class="fa fa-bar-chart-o"></i> Reportar Stock
+					<li><a th:href="@{/seller/2/products}"><i class="fa fa-bar-chart-o"></i> Reportar Stock
 					<span></span></a>
 					<ul class="nav child_menu">
 						
