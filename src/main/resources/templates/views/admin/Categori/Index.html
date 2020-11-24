@@ -804,9 +804,9 @@ License: You must have a valid license purchased only from themeforest(the above
 											class="btn btn-transparent grey-salsa btn-circle btn-sm active">
 											<input type="radio" name="options" class="toggle"
 											id="option1">Listar
-										</label> <label
+										</label> <label 
 											class="btn btn-transparent grey-salsa btn-circle btn-sm">
-											<input type="radio" name="options" class="toggle"
+											<input  type="radio" name="options" class="toggle"
 											id="option2">Agregar
 										</label>
 									</div>
@@ -817,7 +817,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 								<!--  TABLA DATOS INICIO -->
 								<div class="table-scrollable table-scrollable-borderless">
-
+					
 									<table class="table table-hover table-light">
 										<thead>
 											<tr class="uppercase">
@@ -842,7 +842,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														class="fa fa-pencil"></i>
 												</a></td>
 												<td class="fit"><a class="btn btn-circle green-meadow"
-													th:href="@{/admin/home}">Eliminar</a></td>
+													th:href="@{/admin/eliminarCategoria/}+${c.idcategoria}">Eliminar</a></td>
 											</tr>
 											<!-- 	<tr>
 

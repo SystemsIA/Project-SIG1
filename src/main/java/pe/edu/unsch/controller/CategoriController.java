@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pe.edu.unsch.service.CategoriaService;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("/admin")
 public class CategoriController {
 	
 	@Autowired
 	private CategoriaService categoriaService;
 
+	@GetMapping("/home")
+	public String index() {
+		return "views/admin/home/index";
+	}
+	
 	@GetMapping("/categori")
 	public String index(Model model) {
 		model.addAttribute("categorias", categoriaService.listaCategorias());

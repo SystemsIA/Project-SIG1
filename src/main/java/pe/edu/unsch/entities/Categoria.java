@@ -24,7 +24,7 @@ public class Categoria implements java.io.Serializable {
 	private Integer idcategoria;
 	private String nombre;
 	private String desrcipcion;
-	private Integer nProductos;
+	private int nProductos;
 	private Integer proVendidos;
 	private Set<CategoriaSubcategoria> categoriaSubcategoriasForIdsubcategoria = new HashSet<CategoriaSubcategoria>(0);
 	private Set<CategoriaProducto> categoriaProductos = new HashSet<CategoriaProducto>(0);
@@ -49,7 +49,7 @@ public class Categoria implements java.io.Serializable {
 	}
 
 	/** Constructor para mostrar las categorias con productos **/
-	public Categoria(Integer idcategoria, String nombre, String desrcipcion, Integer nProductos, Integer proVendidos) {
+	public Categoria(Integer idcategoria, String nombre, String desrcipcion, int nProductos, Integer proVendidos) {
 		this.idcategoria = idcategoria;
 		this.nombre = nombre;
 		this.desrcipcion = desrcipcion;
@@ -98,11 +98,11 @@ public class Categoria implements java.io.Serializable {
 	// set and get nProductos proVendidos
 	
 	@Transient
-	public Integer getnProductos() {
+	public int getnProductos() {
 		return nProductos;
 	}
 
-	public void setnProductos(Integer nProductos) {
+	public void setnProductos(int nProductos) {
 		this.nProductos = nProductos;
 	}
 
