@@ -2,7 +2,9 @@ function eliminarCat(idcategoria){
 	
 	swal({
 		  title: "¿Estas seguro de Eliminar?",
-		  text: "Una vez eliminado, ¡no podrá recuperar esta categoría!",
+		  text: "Una vez eliminado, ¡no podrá recuperar esta categoría! y dañaras tu BD :V y " +
+		  		"las relaciones entre tus tablas, mejor crea una nueva cateogoria para que te " +
+		  		"juegues ga",
 		  icon: "warning",
 		  buttons: true,
 		  dangerMode: true,
@@ -10,7 +12,7 @@ function eliminarCat(idcategoria){
 		.then((OK) => {
 		  if (OK) {
 			  $.ajax({
-					url:"/admin/eliminar/"+idcategoria,
+					url:"/admin/eliminarCategoria/"+idcategoria,
 					success: function(res){
 						console.log(res);
 					
