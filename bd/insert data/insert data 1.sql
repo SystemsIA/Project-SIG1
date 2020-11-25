@@ -128,3 +128,11 @@ VALUES
 (4,
 16,
 14);
+
+-- DATOS PARA EL PRIMER COMPRADOR y para productos deseados
+INSERT INTO `marketplacebd_test`.`usuario` ( `usuario`, `password`, `ultimo_login`, `idcompradorfrecuente`, `historial_des_usuario`) VALUES ('Axe', 'Viper', '2020-10-08 21:00:00', '2', 'prueba');
+
+INSERT INTO `marketplacebd_test`.`persona` (`nombre`, `apellido`, `telefono`, `foto`, `correo`, `idusuario`) VALUES ('Axe', 'Strong', '961090046', 'prueba', 'axe@gmail.com', '6');
+
+INSERT INTO `marketplacebd_test`.`rol_usuario` (`estado`, `idrol`, `idusuario`) VALUES ('1', '3', '6');
+INSERT INTO  producto_deseado (idproductodeseado, idusuario, idproducto,fecha_deseo,estado) VALUES(1, 6,6, '2020-10-08 21:00:00',1);
