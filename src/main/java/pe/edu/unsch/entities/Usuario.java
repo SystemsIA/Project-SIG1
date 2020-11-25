@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,6 +32,7 @@ public class Usuario implements java.io.Serializable {
 	private String password;
 	private Date ultimoLogin;
 	private String historialDesUsuario;
+	private Persona persona;
 	private Set<Comentario> comentarios = new HashSet<Comentario>(0);
 	private Set<Carrito> carritos = new HashSet<Carrito>(0);
 	private Set<ProductoDeseado> productoDeseados = new HashSet<ProductoDeseado>(0);
@@ -38,7 +40,7 @@ public class Usuario implements java.io.Serializable {
 	private Set<Reclamo> reclamos = new HashSet<Reclamo>(0);
 	private Set<Pedido> pedidos = new HashSet<Pedido>(0);
 	private Set<ProductoValorado> productoValorados = new HashSet<ProductoValorado>(0);
-	private Set<Persona> personas = new HashSet<Persona>(0);
+	
 
 	public Usuario() {
 	}
@@ -52,7 +54,7 @@ public class Usuario implements java.io.Serializable {
 	public Usuario(CompradorFrecuente compradorFrecuente, String usuario, String password, Date ultimoLogin,
 			String historialDesUsuario, Set<Comentario> comentarios, Set<Carrito> carritos,
 			Set<ProductoDeseado> productoDeseados, Set<RolUsuario> rolUsuarios, Set<Reclamo> reclamos,
-			Set<Pedido> pedidos, Set<ProductoValorado> productoValorados, Set<Persona> personas) {
+			Set<Pedido> pedidos, Set<ProductoValorado> productoValorados,Persona persona) {
 		this.compradorFrecuente = compradorFrecuente;
 		this.usuario = usuario;
 		this.password = password;
@@ -65,7 +67,7 @@ public class Usuario implements java.io.Serializable {
 		this.reclamos = reclamos;
 		this.pedidos = pedidos;
 		this.productoValorados = productoValorados;
-		this.personas = personas;
+		this.persona = persona;
 	}
 
 	@Id
@@ -190,13 +192,13 @@ public class Usuario implements java.io.Serializable {
 		this.productoValorados = productoValorados;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-	public Set<Persona> getPersonas() {
-		return this.personas;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario")
+	public Persona getPersona() {
+		return this.persona;
 	}
 
-	public void setPersonas(Set<Persona> personas) {
-		this.personas = personas;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 }

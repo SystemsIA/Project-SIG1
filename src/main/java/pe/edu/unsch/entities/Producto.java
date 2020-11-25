@@ -53,9 +53,9 @@ public class Producto implements java.io.Serializable {
 	private Set<OfertaEspecial> ofertaEspecials_1 = new HashSet<OfertaEspecial>(0);
 	private Set<OfertaProducto> ofertaProductos = new HashSet<OfertaProducto>(0);
 	private Set<ProductoFavorito> productoFavoritos = new HashSet<ProductoFavorito>(0);
-	
+
 	public Producto(String nombre) {
-	  this.nombre = nombre;
+		this.nombre = nombre;
 	}
 
 	public Producto() {
@@ -122,10 +122,8 @@ public class Producto implements java.io.Serializable {
 		this.ofertaProductos = ofertaProductos;
 		this.productoFavoritos = productoFavoritos;
 	}
-	
-	
 
-	public Producto(String codigo, String nombre, String descripcion, byte cantidad,BigDecimal precioUnitario, 
+	public Producto(String codigo, String nombre, String descripcion, byte cantidad, BigDecimal precioUnitario,
 			String marca, Persona persona) {
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -133,7 +131,7 @@ public class Producto implements java.io.Serializable {
 		this.precioUnitario = precioUnitario;
 		this.cantidad = cantidad;
 		this.marca = marca;
-		this.persona=persona;
+		this.persona = persona;
 	}
 
 	@Id
