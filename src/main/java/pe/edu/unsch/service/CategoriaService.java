@@ -7,5 +7,8 @@ import pe.edu.unsch.entities.Categoria;
 public interface CategoriaService {
 	
 	List<Categoria> listaCategorias();
+	
+	//Borrar categoria por el Id
+	void borrarCategoria(Integer idCategoria);
 
 }

@@ -21,5 +21,11 @@ public class CategoriaServiceImpl implements CategoriaService{
 	public List<Categoria> listaCategorias(){
 		return categoriaDao.listaCategorias();
 	}
+	
+	//Borrar categoria por el Id
+	@Override
+	public void borrarCategoria(Integer idCategoria) {
+		categoriaDao.deleteById(idCategoria);
+	}
 
 }
