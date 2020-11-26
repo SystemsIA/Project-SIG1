@@ -43,6 +43,14 @@ public class Pedido implements java.io.Serializable {
 	public Pedido() {
 	}
 
+	public Pedido(long idpedido, String codigo, Date fecha, String direccionEntrega, byte estadoPedido) {
+		this.idpedido = idpedido;
+		this.codigo = codigo;
+		this.fecha = fecha;
+		this.direccionEntrega = direccionEntrega;
+		this.estadoPedido = estadoPedido;
+	}
+
 	public Pedido(long idpedido, CompradorFrecuente compradorFrecuente, SeguimientoPedido seguimientoPedido,
 			Usuario usuario, String codigo, Date fecha, String direccionEntrega, int cantidadProducto,
 			byte estadoPedido, long precioProducto, long descuentoProducto, String pagoPendiente) {

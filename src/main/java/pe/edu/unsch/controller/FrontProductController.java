@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import pe.edu.unsch.entities.Producto;
-import pe.edu.unsch.entities.ProductoDeseado;
 import pe.edu.unsch.service.ProductoService;
 import pe.edu.unsch.service.ProductosJuntosService;
 import pe.edu.unsch.service.UsuarioService;

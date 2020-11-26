@@ -136,3 +136,15 @@ INSERT INTO `marketplacebd_test`.`persona` (`nombre`, `apellido`, `telefono`, `f
 
 INSERT INTO `marketplacebd_test`.`rol_usuario` (`estado`, `idrol`, `idusuario`) VALUES ('1', '3', '6');
 INSERT INTO  producto_deseado (idproductodeseado, idusuario, idproducto,fecha_deseo,estado) VALUES(1, 6,6, '2020-10-08 21:00:00',1);
+
+
+-- Seguimiento Pedido
+INSERT INTO `marketplacebd_test`.`seguimiento_pedido`
+(`idseguimientopedido`,`tiposeguimiento`,`estado`) VALUES (1,"Terrestre",2);
+
+
+-- Pedido
+INSERT INTO `marketplacebd_test`.`pedido`
+(`idpedido`,`codigo`,`fecha`,`direccion_entrega`,`cantidad_producto`,`estado_pedido`,`precio_producto`,`descuento_producto`,`pago_pendiente`,`idusuario`,`idcompradorfrecuente`,`idseguimientopedido`)
+VALUES
+(1,"PED-01",'2020-05-02 15:30:00',"Av Avenida de las Avenidas",2,1,100.52,4.32,"Pago pendiente",1,1,1);

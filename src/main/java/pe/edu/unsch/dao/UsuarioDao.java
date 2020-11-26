@@ -12,16 +12,10 @@ import pe.edu.unsch.entities.Producto;
 import pe.edu.unsch.entities.Usuario;
 
 @Repository
-public interface UsuarioDao  extends JpaRepository<Usuario, Serializable>{
-	
-	@Query( value = " SELECT p "
-			+ "FROM Usuario us "
-			+ "join us.productoDeseados prods "
-			+ "join prods.producto p "
-			+ "join us.rolUsuarios rp "
-			+ "join rp.rol nr " 
-			+ "where nr.nombre = 'Comprador' and us.idusuario = ?1")
-	List<Producto> listarProductosDeseados ( int idusuario);
-	
+public interface UsuarioDao extends JpaRepository<Usuario, Serializable> {
+
+	@Query(value = " SELECT p " + "FROM Usuario us " + "join us.productoDeseados prods " + "join prods.producto p "
+			+ "join us.rolUsuarios rp " + "join rp.rol nr " + "where nr.nombre = 'Comprador' and us.idusuario = ?1")
+	List<Producto> listarProductosDeseados(int idusuario);
 
 }
