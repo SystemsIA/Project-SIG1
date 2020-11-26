@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -38,6 +39,8 @@ public class Producto implements java.io.Serializable {
 	private Boolean destacado;
 	private String marca;
 	private int cantidadventas;
+	private String desGarantia;
+	private String nombreCategoria;
 	private Set<Carrito> carritos = new HashSet<Carrito>(0);
 	private Set<CuponDescuento> cuponDescuentos = new HashSet<CuponDescuento>(0);
 	private Set<ImagenProducto> imagenProductos = new HashSet<ImagenProducto>(0);
@@ -135,6 +138,21 @@ public class Producto implements java.io.Serializable {
 		this.marca = marca;
 		this.persona = persona;
 	}
+	//Constructor CU07-04
+		public Producto(Long idproducto,String codigo, String nombre, String descripcion, byte cantidad,BigDecimal precioUnitario, 
+				String nombreCategoria,  Persona persona, int cantidadventas, String marca, String desGarantia) {
+			this.idproducto=idproducto;
+			this.codigo = codigo;
+			this.nombre = nombre;
+			this.descripcion = descripcion;
+			this.precioUnitario = precioUnitario;
+			this.cantidad = cantidad;
+			this.marca = marca;
+			this.persona=persona;
+			this.desGarantia=desGarantia;
+			this.nombreCategoria= nombreCategoria;
+			this.cantidadventas=cantidadventas;
+		}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -397,4 +415,23 @@ public class Producto implements java.io.Serializable {
 		this.productoFavoritos = productoFavoritos;
 	}
 
+	@Transient
+	public String getDesGarantia() {
+		return desGarantia;
+	}
+
+	public void setDesGarantia(String desGarantia) {
+		this.desGarantia = desGarantia;
+	}
+
+	@Transient
+	public String getNombreCategoria() {
+		return nombreCategoria;
+	}
+
+	public void setNombreCategoria(String nombreCategoria) {
+		this.nombreCategoria = nombreCategoria;
+	}
+
+	
 }

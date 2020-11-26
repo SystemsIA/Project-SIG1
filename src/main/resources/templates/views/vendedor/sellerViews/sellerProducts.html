@@ -72,20 +72,30 @@
 						<tr>
 							<th scope="col">Código</th>
 							<th scope="col">Producto</th>
+							<th scope="col">Marca</th>
 							<th scope="col">Descripción</th>
-							<th scope="col">Stock</th>
 							<th scope="col">Precio(S/.)</th>
+							<th scope="col">Ventas</th>
+							<th scope="col">Stock</th>
 							<th scope="col">Categoría</th>
+							<th scope="col">Garantía</th>
+							<th scope="col"> Editar</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="pro:${productosVendedor}">
 							<th scope="row" th:text="${pro.codigo}"></th>
 							<td th:text="${pro.nombre}"></td>
-							<td th:text="${pro.descripcion}"></td>
-							<td th:text="${pro.cantidad}"></td>
-							<td th:text="${pro.precioUnitario}"></td>
 							<td th:text="${pro.marca}"></td>
+							<td th:text="${pro.descripcion}"></td>
+							<td th:text="${pro.precioUnitario}"></td>
+							<td th:text="${pro.cantidadventas}"></td>
+							<td th:text="${pro.cantidad}"></td>
+							<td th:text="${pro.nombreCategoria}"></td>
+							<td th:text="${pro.desGarantia}"></td>
+							<td><a th:href="@{/modificar/}+${pro.idproducto}"
+						class="btn btn-success">Modificar <i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<a th:href="@{/borrar/}+${pro.idproducto}"class="btn btn-danger">Eliminar <i class="fa fa-trash" aria-hidden="true"></i></a></td>
 						</tr>
 					</tbody>
 				</table>
