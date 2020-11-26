@@ -19,10 +19,11 @@ public interface ProductoDao extends JpaRepository<Producto, Serializable> {
 	@Query(value = "select pr " + "from Producto pr " + "where pr.destacado=1")
 	List<Producto> listaProductoDestacados();
 
-	@Query("select new Producto(pro.codigo as codigo, pro.nombre as nombre, "
+	@Query("select new Producto(pro.idproducto as idproducto, pro.codigo as codigo, pro.nombre as nombre, "
 			+ "pro.descripcion as descripcion, pro.cantidad as cantidad, " + "pro.precioUnitario as precioUnitario, "
-			+ " cat.nombre as marca, pro.persona as persona) " + "from Producto pro "
+			+ " cat.nombre as nombreCategoria, pro.persona as persona, pro.cantidadventas as cantidadventas, pro.marca as marca, gp.descripcion as desGarantia) " 
+			+ "from Producto pro "
 			+ "inner join pro.categoriaProductos cp " + "inner join cp.categoria cat " + "inner join pro.persona per "
-			+ " where per.idpersona = ?1 " + "order by nombre")
+			+ "inner join pro.garantiaProducto gp where per.idpersona = ?1 " + "order by nombre")
 	List<Producto> listaProductosVendedor(Integer idPersona);
 }
