@@ -7,8 +7,9 @@
 			<li class=""><a href="javascript:;"
 				class="user-profile dropdown-toggle" data-toggle="dropdown"
 				aria-expanded="false"> <img
-					th:src="@{/assets/vendedor/images/img.jpg}" alt=""> <!-- <span th:text="${session.usuario}"></span>  -->
-					<span class=" fa fa-angle-down"></span>
+					th:src="@{/assets/vendedor/images/img.jpg}" alt=""> <span
+					th:text="${session.usuario}"></span> <span
+					class=" fa fa-angle-down"></span>
 			</a>
 				<ul class="dropdown-menu dropdown-usermenu pull-right">
 					<li><a href="javascript:;"> Perfil</a></li>
@@ -16,10 +17,10 @@
 							class="badge bg-red pull-right">50%</span> <span>Ajustes</span>
 					</a></li>
 					<li><a href="javascript:;">Ayuda</a></li>
-				<!-- 	<li><a href="javascript:;">Log Out</a></li> -->
+					<!-- 	<li><a href="javascript:;">Log Out</a></li> -->
 
-					<li> <a th:href="@{/logout}">
-					<i class="fa fa-sign-out pull-right"></i> Cerrar sesión
+					<li><a th:href="@{/logout}"> <i
+							class="fa fa-sign-out pull-right"></i> Cerrar sesión
 					</a></li>
 				</ul></li>
 

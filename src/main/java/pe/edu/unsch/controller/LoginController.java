@@ -33,12 +33,15 @@ public class LoginController {
 			return "redirect:/login";
 		} 
 		else if( user.getIdusuario() == 1) {
+			session.setAttribute("usuario", user.getUsuario());
 			return "redirect:/admin/home";
 		}
 		else if( user.getIdusuario() == 2) {
+			session.setAttribute("usuario", user.getUsuario());
 			return "redirect:/seller/home";
 		}
 		else {
+			session.setAttribute("usuario", user.getUsuario());
 			session.setAttribute("usuario", user.getUsuario());
 			return "redirect:/";
 		}
