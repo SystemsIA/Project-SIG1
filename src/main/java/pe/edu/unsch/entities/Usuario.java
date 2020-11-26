@@ -70,6 +70,15 @@ public class Usuario implements java.io.Serializable {
 		this.persona = persona;
 	}
 
+	
+	
+	
+	public Usuario( String usuario, String password, Integer idusuario) {
+		this.idusuario = idusuario;
+		this.usuario = usuario;
+		this.password = password;
+	}
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
