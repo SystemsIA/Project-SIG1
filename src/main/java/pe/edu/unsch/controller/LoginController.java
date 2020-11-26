@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import pe.edu.unsch.entities.RolUsuario;
 import pe.edu.unsch.entities.Usuario;
 import pe.edu.unsch.service.UsuarioLoginService;
 
@@ -41,11 +40,13 @@ public class LoginController {
 			return "redirect:/seller/home";
 		}
 		else {
-			session.setAttribute("usuario", user);
+			session.setAttribute("usuario", user.getUsuario());
 			/* session.setAttribute("usuario", user.getUsuario()); */
 			return "redirect:/";
+
 		}
 
+		
 	}
 	
 	@GetMapping("/logout")

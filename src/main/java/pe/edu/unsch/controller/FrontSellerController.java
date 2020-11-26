@@ -25,9 +25,13 @@ public class FrontSellerController {
 	
 	@GetMapping("/{idVendedor}/products")
 	public String sellerProducts(@PathVariable(name="idVendedor") Integer idVendedor, Model model) {
-		model.addAttribute("productosVendedor", productoService.listaProductosVendedor(idVendedor));
-		model.addAttribute("nombreVendedor",productoService.listaProductosVendedor(idVendedor).get(0).getPersona().getNombre()+" "+
-				productoService.listaProductosVendedor(idVendedor).get(0).getPersona().getApellido());
+		model.addAttribute("productosVendedor", productoService.listaProductosVendedor( idVendedor));
+		/*
+		 * model.addAttribute("nombreVendedor",productoService.listaProductosVendedor(
+		 * idVendedor).get(0).getPersona().getNombre()+" "+
+		 * productoService.listaProductosVendedor(idVendedor).get(0).getPersona().
+		 * getApellido());
+		 */
 		return "views/vendedor/sellerViews/sellerProducts";
 	}
 
