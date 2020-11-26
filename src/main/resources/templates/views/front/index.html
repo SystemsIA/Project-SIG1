@@ -42,13 +42,14 @@
 							alexlenin-arango@email.com</a></li>
 					<li><a href="#"><i class="fa fa-map-marker"></i> 1734
 							Stonecoal Road</a></li>
-							
+
 				</ul>
 				<ul class="header-links pull-right">
 					<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-					<li><a href="#"><i class="fa fa-user-o" ></i>Mi cuenta</a></li>
+					<li><a href="#"><i class="fa fa-user-o"></i>Mi cuenta</a></li>
 					<!-- <li><a><i class="fa fa-user-o"></i></a><a href="#" th:text="${session.usuario.usuario}"> </a></li> -->
-							<li><a th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a></li>
+					<li><a th:href="@{/logout}"><i class="fa fa-sign-out"
+							aria-hidden="true"></i> Cerrar Sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -105,50 +106,59 @@
 								</a>
 								<div class="cart-dropdown">
 									<div class="cart-list">
-									
-										<div class="product-widget">
+
+										<div th:each="carritoProducto : ${carritoProductos}"
+											class="product-widget">
 											<div class="product-img">
-												<img src="../../assets/front/img/product01.png" alt="">
+												<img
+													th:src="${carritoProducto.imagenProductos.size() == 0} ? '':${carritoProducto.imagenProductos[0].direccion} "
+													alt="">
 											</div>
 											<div class="product-body">
 												<h3 class="product-name">
-													<a href="../../product">product name goes here</a>
+													<a
+														th:href="@{/product/{id_producto}(id_producto=${carritoProducto.idproducto})}"
+														th:text="${carritoProducto.nombre}"></a>
 												</h3>
 												<h4 class="product-price">
 													<span class="qty">1x</span>$980.00
 												</h4>
 											</div>
-											<button class="delete">
-												<i class="fa fa-close"></i>
-											</button>
+											<form
+												th:action="@{carrito/{idproducto}(idproducto=${carritoProducto.idproducto})}"
+												method="post">
+												<button class="delete" type="submit">
+													<i class="fa fa-close"></i>
+												</button>
+											</form>
 										</div>
-										<div class="product-widget">
-											<div class="product-img">
-												<img src="../../assets/front/img/product02.png" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-name">
-													<a href="../../product">product name goes here</a>
-												</h3>
-												<h4 class="product-price">
-													<span class="qty">3x</span>$980.00
-												</h4>
-											</div>
-											<button class="delete">
-												<i class="fa fa-close"></i>
-											</button>
-										</div>
+										<!-- 										<div class="product-widget"> -->
+										<!-- 											<div class="product-img"> -->
+										<!-- 												<img src="../../assets/front/img/product02.png" alt=""> -->
+										<!-- 											</div> -->
+										<!-- 											<div class="product-body"> -->
+										<!-- 												<h3 class="product-name"> -->
+										<!-- 													<a href="../../product">product name goes here</a> -->
+										<!-- 												</h3> -->
+										<!-- 												<h4 class="product-price"> -->
+										<!-- 													<span class="qty">3x</span>$980.00 -->
+										<!-- 												</h4> -->
+										<!-- 											</div> -->
+										<!-- 											<button class="delete"> -->
+										<!-- 												<i class="fa fa-close"></i> -->
+										<!-- 											</button> -->
+										<!-- 										</div> -->
 									</div>
-									
-									<div class="cart-summary">
-										<small>3 Item(s) selected</small>
-										<h5>SUBTOTAL: $2940.00</h5>
-									</div>
-									<div class="cart-btns">
-										<a href="#">View Cart</a> <a href="../../checkout">Checkout
-											<i class="fa fa-arrow-circle-right"></i>
-										</a>
-									</div>
+
+									<!-- 									<div class="cart-summary"> -->
+									<!-- 										<small>3 Item(s) selected</small> -->
+									<!-- 										<h5>SUBTOTAL: $2940.00</h5> -->
+									<!-- 									</div> -->
+									<!-- 									<div class="cart-btns"> -->
+									<!-- 										<a href="#">View Cart</a> <a href="../../checkout">Checkout -->
+									<!-- 											<i class="fa fa-arrow-circle-right"></i> -->
+									<!-- 										</a> -->
+									<!-- 									</div> -->
 								</div>
 							</div>
 							<!-- /Cart -->
@@ -265,6 +275,7 @@
 					<div class="row">
 						<h1
 							th:text="${productosDestacados.size() != 0} ? 'PRODUCTOS DESTACADOS': 'NO HAY PRODUCTO DESTACADOS'"></h1>
+
 						<div class="products-tabs">
 							<!-- tab -->
 							<div id="tab1" class="tab-pane active">
@@ -275,7 +286,7 @@
 										class="product">
 										<div class="product-img">
 											<img
-												th:src="${productoDestacado.imagenProductos.size() == 0} ? '':${productoDestacado.imagenProductos[0].direccion} ">
+												th:src="${productoDestacado.imagenProductos.size() == 0} ? '':${productoDestacado.imagenProductos[0].direccion}">
 											<div class="product-label">
 												<span class="sale">-30%</span> <span class="new">NEW</span>
 											</div>
@@ -388,7 +399,7 @@
 										</div>
 										<div class="add-to-cart">
 											<button class="add-to-cart-btn">
-												<i class="fa fa-shopping-cart"></i> add to cart
+												<i class="fa fa-shopping-cart"></i> add to t
 											</button>
 										</div>
 									</div>

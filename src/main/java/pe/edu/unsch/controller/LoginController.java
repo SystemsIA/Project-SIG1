@@ -41,11 +41,13 @@ public class LoginController {
 		}
 		else {
 			session.setAttribute("usuario", user.getUsuario());
+			
+			// Aqui se va ha guardar el id del usuario
+			session.setAttribute("idusuario",user.getIdusuario());
 			/* session.setAttribute("usuario", user.getUsuario()); */
 			return "redirect:/";
 
 		}
-
 		
 	}
 	

@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.unsch.dao.CarritoDao;
+import pe.edu.unsch.dao.ProductoCarritoDao;
 import pe.edu.unsch.entities.Producto;
-import pe.edu.unsch.service.CarritoService;
+import pe.edu.unsch.service.ProductoCarritoService;
 
 @Service
 @Transactional
-public class CarritoServiceImpl implements CarritoService {
+public class ProductoCarritoServiceImpl implements ProductoCarritoService {
 	@Autowired
-	private CarritoDao carritoDao;
+	private ProductoCarritoDao carritoDao;
 
 	@Override
 	public void eliminarProductoDeCarrito(int idproducto) {

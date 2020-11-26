@@ -138,21 +138,23 @@ public class Producto implements java.io.Serializable {
 		this.marca = marca;
 		this.persona = persona;
 	}
-	//Constructor CU07-04
-		public Producto(Long idproducto,String codigo, String nombre, String descripcion, byte cantidad,BigDecimal precioUnitario, 
-				String nombreCategoria,  Persona persona, int cantidadventas, String marca, String desGarantia) {
-			this.idproducto=idproducto;
-			this.codigo = codigo;
-			this.nombre = nombre;
-			this.descripcion = descripcion;
-			this.precioUnitario = precioUnitario;
-			this.cantidad = cantidad;
-			this.marca = marca;
-			this.persona=persona;
-			this.desGarantia=desGarantia;
-			this.nombreCategoria= nombreCategoria;
-			this.cantidadventas=cantidadventas;
-		}
+
+	// Constructor CU07-04
+	public Producto(Long idproducto, String codigo, String nombre, String descripcion, byte cantidad,
+			BigDecimal precioUnitario, String nombreCategoria, Persona persona, int cantidadventas, String marca,
+			String desGarantia) {
+		this.idproducto = idproducto;
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precioUnitario = precioUnitario;
+		this.cantidad = cantidad;
+		this.marca = marca;
+		this.persona = persona;
+		this.desGarantia = desGarantia;
+		this.nombreCategoria = nombreCategoria;
+		this.cantidadventas = cantidadventas;
+	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -433,5 +435,4 @@ public class Producto implements java.io.Serializable {
 		this.nombreCategoria = nombreCategoria;
 	}
 
-	
 }

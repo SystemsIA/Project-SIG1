@@ -148,3 +148,44 @@ INSERT INTO `marketplacebd_test`.`pedido`
 (`idpedido`,`codigo`,`fecha`,`direccion_entrega`,`cantidad_producto`,`estado_pedido`,`precio_producto`,`descuento_producto`,`pago_pendiente`,`idusuario`,`idcompradorfrecuente`,`idseguimientopedido`)
 VALUES
 (1,"PED-01",'2020-05-02 15:30:00',"Av Avenida de las Avenidas",2,1,100.52,4.32,"Pago pendiente",1,1,1);
+
+-- Cupon descuento
+INSERT INTO `marketplacebd_test`.`cupon_descuento`
+(
+`valor_descuento`,
+`idproducto`)
+VALUES
+(
+0.32,6);
+
+
+-- Carrito
+INSERT INTO `marketplacebd_test`.`carrito`
+(`idcarrito`,
+`precio_total`,
+`unidad_por_producto`,
+`idproducto`,
+`idcupon`,
+`idusuario`)
+VALUES
+(2,
+256.2,
+3,
+7,
+1,
+6);
+
+INSERT INTO `marketplacebd_test`.`carrito`
+(`idcarrito`,
+`precio_total`,
+`unidad_por_producto`,
+`idproducto`,
+`idcupon`,
+`idusuario`)
+VALUES
+(3,
+100.2,
+2,
+9,
+2,
+6);
