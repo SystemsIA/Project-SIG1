@@ -93,15 +93,17 @@
 								</a>
 							</div>
 							<!-- /Wishlist -->
+
+
 							<!-- Cart -->
 							<div class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown"
-									aria-expanded="true"> <i class="fa fa-shopping-cart"></i> <span>Your
-										Cart</span>
-									<div class="qty">3</div>
+									aria-expanded="true"> <i class="fa fa-shopping-cart"></i> <span>Mis
+										Compras</span> <span class="qty">3</span>
 								</a>
 								<div class="cart-dropdown">
 									<div class="cart-list">
+									
 										<div class="product-widget">
 											<div class="product-img">
 												<img src="../../assets/front/img/product01.png" alt="">
@@ -135,6 +137,7 @@
 											</button>
 										</div>
 									</div>
+									
 									<div class="cart-summary">
 										<small>3 Item(s) selected</small>
 										<h5>SUBTOTAL: $2940.00</h5>
@@ -147,6 +150,8 @@
 								</div>
 							</div>
 							<!-- /Cart -->
+
+
 							<!-- Menu Toogle -->
 							<div class="menu-toggle">
 								<a href="#"> <i class="fa fa-bars"></i> <span>Menu</span>
@@ -256,7 +261,8 @@
 				<!-- Products tab & slick -->
 				<div class="col-md-12">
 					<div class="row">
-					<h1 th:text="${productosDestacados.size() != 0} ? 'PRODUCTOS DESTACADOS': 'NO HAY PRODUCTO DESTACADOS'"></h1>
+						<h1
+							th:text="${productosDestacados.size() != 0} ? 'PRODUCTOS DESTACADOS': 'NO HAY PRODUCTO DESTACADOS'"></h1>
 						<div class="products-tabs">
 							<!-- tab -->
 							<div id="tab1" class="tab-pane active">

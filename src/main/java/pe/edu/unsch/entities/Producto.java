@@ -61,11 +61,13 @@ public class Producto implements java.io.Serializable {
 	public Producto() {
 	}
 
-	public Producto(Long idproducto, String nombre, BigDecimal precioUnitario, byte cantidad) {
+	public Producto(Long idproducto, String nombre, BigDecimal precioUnitario, byte cantidad,
+			Set<ImagenProducto> imagenProductos) {
 		this.idproducto = idproducto;
 		this.nombre = nombre;
 		this.precioUnitario = precioUnitario;
 		this.cantidad = cantidad;
+		this.imagenProductos = imagenProductos;
 	}
 
 	public Producto(GarantiaProducto garantiaProducto, LibroReclamacion libroReclamacion, String codigo, String nombre,
