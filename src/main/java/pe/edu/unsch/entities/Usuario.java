@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -33,6 +34,7 @@ public class Usuario implements java.io.Serializable {
 	private Date ultimoLogin;
 	private String historialDesUsuario;
 	private Persona persona;
+	private Integer idpersona;
 	private Set<Comentario> comentarios = new HashSet<Comentario>(0);
 	private Set<Carrito> carritos = new HashSet<Carrito>(0);
 	private Set<ProductoDeseado> productoDeseados = new HashSet<ProductoDeseado>(0);
@@ -73,10 +75,11 @@ public class Usuario implements java.io.Serializable {
 	
 	
 	
-	public Usuario( String usuario, String password, Integer idusuario) {
+	public Usuario( String usuario, String password, Integer idusuario, Integer idpersona) {
 		this.idusuario = idusuario;
 		this.usuario = usuario;
 		this.password = password;
+		this.idpersona= idpersona;
 	}
 
 	@Id
@@ -210,4 +213,14 @@ public class Usuario implements java.io.Serializable {
 		this.persona = persona;
 	}
 
+	@Transient
+	public Integer getIdpersona() {
+		return idpersona;
+	}
+
+	public void setIdpersona(Integer idpersona) {
+		this.idpersona = idpersona;
+	}
+
+	
 }
