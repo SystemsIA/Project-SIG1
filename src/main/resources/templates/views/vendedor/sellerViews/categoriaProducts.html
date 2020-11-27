@@ -65,73 +65,48 @@
 					</div>
 				</div>
 				<!-- /top tiles -->
-				<div th:if="${productosVendedor.size() == 0}"
-					class="alert alert-danger" role="alert">
-					<span>Aun no tiene productos</span>
-				</div>
 				<!--  PRODUCTOS DEL VENDEDOR -->
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Código</th>
-							<th scope="col">Producto</th>
-							<th scope="col">Marca</th>
-							<th scope="col">Descripción</th>
-							<th scope="col">Precio(S/.)</th>
-							<th scope="col">Ventas</th>
-							<th scope="col">Stock</th>
-							<th scope="col">Categoría</th>
-							<th scope="col">Garantía</th>
-							<th scope="col">Editar</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="pro:${productosVendedor}">
-							<th scope="row" th:text="${pro.codigo}"></th>
-							<td th:text="${pro.nombre}"></td>
-							<td th:text="${pro.marca}"></td>
-							<td th:text="${pro.descripcion}"></td>
-							<td th:text="${pro.precioUnitario}"></td>
-							<td th:text="${pro.cantidadventas}"></td>
-							<td th:text="${pro.cantidad}"></td>
-							<td th:text="${pro.nombreCategoria}"></td>
-							<td th:text="${pro.desGarantia}"></td>
-							<td><button type="button" class="btn btn-success"
-									data-toggle="modal" data-target="#productoModal">Modificar</button></td>
-							<td><a
-								th:href="@{/seller/categoria/quitar/} + ${pro.idproducto}"
-								class="btn btn-danger">Eliminar <i class="fa fa-trash"
-									aria-hidden="true"></i>
-							</a></td>
-						</tr>
-					</tbody>
-				</table>
-				<!--  FIN PRODUCTOS VENDEDOR -->
-				<br>
-				<!-- Button trigger modal -->
-				<!-- Modal -->
-				<div class="modal fade" id="productoModal" tabindex="-1"
-					role="dialog" aria-labelledby="productoModalLabel"
-					aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="productoModalLabel">Modal title</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">...</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save
-									changes</button>
-							</div>
-						</div>
+				<div class="row">
+					<div th:if="${message}" class="alert alert-primary" role="alert">
+						<span th:text="${message}"></span>
+					</div>
+
+					<div class="col-md-10" th:each="categoria : ${categorias}">
+						<b th:text=${categoria.nombre}></b>
+						<table class="table" style="width: 700px">
+
+							<thead>
+								<tr>
+									<th scope="col">Código</th>
+									<th scope="col">Producto</th>
+									<th scope="col">Descripción</th>
+									<th scope="col">Precio(S/.)</th>
+									<th scope="col">Editar</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="pro:${productosVendedor}"
+									th:if="${pro.nombreCategoria == categoria.nombre}">
+									<th scope="col" th:text="${pro.codigo}"></th>
+									<td scope="col" th:text="${pro.nombre}"></td>
+									<td scope="col" th:text="${pro.descripcion}"></td>
+									<td scope="col" th:text="${pro.precioUnitario}"></td>
+									<td><a th:href="@{/modificar/}+${pro.idproducto}"
+										class="btn btn-success">Modificar <i class="fa fa-pencil"
+											aria-hidden="true"></i></a></td>
+									<td><a
+										th:href="@{/seller/categoria/quitar/} + ${pro.idproducto}"
+										class="btn btn-danger">Eliminar <i class="fa fa-trash"
+											aria-hidden="true"></i>
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
+				<!--  FIN PRODUCTOS VENDEDOR -->
+				<br>
+
 			</div>
 			<!-- /page content -->
 

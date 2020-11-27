@@ -12,20 +12,26 @@ import pe.edu.unsch.service.CategoriaService;
 
 @Service
 @Transactional
-public class CategoriaServiceImpl implements CategoriaService{
-	
+public class CategoriaServiceImpl implements CategoriaService {
+
 	@Autowired
 	private CategoriaDao categoriaDao;
-	
+
 	@Override
-	public List<Categoria> listaCategorias(){
+	public List<Categoria> listaCategorias() {
 		return categoriaDao.listaCategorias();
 	}
-	
-	//Borrar categoria por el Id
+
+	// Borrar categoria por el Id
 	@Override
 	public void borrarCategoria(Integer idCategoria) {
 		categoriaDao.deleteById(idCategoria);
+	}
+
+	@Override
+	public List<Categoria> listaCategoriVendedor(Integer idusuario) {
+		// TODO Auto-generated method stub
+		return categoriaDao.listaCategoriVendedor(idusuario);
 	}
 
 }

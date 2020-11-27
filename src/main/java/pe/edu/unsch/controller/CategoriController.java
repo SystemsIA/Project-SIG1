@@ -28,7 +28,7 @@ public class CategoriController {
 	}
 	
 	@GetMapping("/eliminarCategoria/{idCategoria}")
-	public String eliminarCategoria(Model model2, @PathVariable Integer idCategoria) {
+	public String eliminarCategoria(Model model, @PathVariable Integer idCategoria) {
 		categoriaService.borrarCategoria(idCategoria);
 		return "redirect:/admin/categori";
 	}

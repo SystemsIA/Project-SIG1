@@ -5,7 +5,7 @@ import java.util.List;
 import pe.edu.unsch.entities.Producto;
 
 public interface ProductoCarritoService {
-	void eliminarProductoDeCarrito(int idproducto);
+	void eliminarProductoDeCarrito(long idproducto);
 
 	List<Producto> listaProductoCarrito(int idusuario);
 }

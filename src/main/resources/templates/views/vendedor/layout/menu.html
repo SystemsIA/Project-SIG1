@@ -64,11 +64,11 @@
 					 <li><a th:href="@{/seller/home}"><i class="fa fa-clone"></i> Inicio <span
 						></span></a>
 					</li>
-				<li><a><i class="fa fa-pencil"></i> Gestión de Productos 
+				<li><a th:href="@{/seller/}+${usuario.idusuario} + '/categoria/products'"><i class="fa fa-pencil"></i> Gestión de Productos 
 				<span></span></a>
 					</li>
 					
-					<li><a th:href="@{/seller/2/products}"><i class="fa fa-bar-chart-o"></i> Reportar Stock
+					<li><a th:href="@{/seller/}+${usuario.idusuario}+ '/products'"><i class="fa fa-bar-chart-o"></i> Reportar Stock
 					<span></span></a>
 					<ul class="nav child_menu">
 						
@@ -80,7 +80,7 @@
 						class="fa fa-chevron-down"></span></a>
 					<ul class="nav child_menu">
 						<li><a href="#">Productos menos vendidos</a></li>
-						<li><a href="#">Productos más vendidos</a></li>
+						<li><a href="#">Productos mï¿½s vendidos</a></li>
 					</ul></li>
 					
 					<li><a><i class="fa fa-th-list"></i> Pedidos <span

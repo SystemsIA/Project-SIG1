@@ -13,18 +13,17 @@ import pe.edu.unsch.entities.Usuario;
 
 @ControllerAdvice
 public class CommonControllerAdvice {
-	
-	/*
-	 * @Autowired private ProductoDao productoDao;
-	 * 
-	 * @ModelAttribute public void addAttributes(HttpServletRequest request, Model
-	 * model) { //recuperacion de session HttpSession session =
-	 * request.getSession(); Usuario usuario =
-	 * (Usuario)session.getAttribute("usuario");
-	 * 
-	 * //producto
-	 * model.addAttribute("productosVendedor",productoDao.listaProductosVendedor(
-	 * usuario.getIdpersona())); }
-	 * 
-	 */
+
+//	@Autowired
+//	private ProductoDao productoDao;
+//
+//	@ModelAttribute
+//	public void addAttributes(HttpServletRequest request, Model model) { // recuperacion de session
+//		HttpSession session = request.getSession();
+//		Usuario usuario = (Usuario) session.getAttribute("usuario");
+//
+//		// producto
+//		model.addAttribute("productosVendedor", productoDao.listaProductosVendedor(usuario.getIdpersona()));
+//	}
+
 }

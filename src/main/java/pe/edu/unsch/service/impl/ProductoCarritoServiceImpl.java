@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pe.edu.unsch.dao.CarritoDao;
 import pe.edu.unsch.dao.ProductoCarritoDao;
 import pe.edu.unsch.entities.Producto;
 import pe.edu.unsch.service.ProductoCarritoService;
@@ -14,17 +15,21 @@ import pe.edu.unsch.service.ProductoCarritoService;
 @Transactional
 public class ProductoCarritoServiceImpl implements ProductoCarritoService {
 	@Autowired
-	private ProductoCarritoDao carritoDao;
+	private ProductoCarritoDao productoCarritoDao;
+
+	@Autowired
+	private CarritoDao carritoDao;
 
 	@Override
-	public void eliminarProductoDeCarrito(int idproducto) {
-		carritoDao.eliminarProductoDeCarrito(idproducto);
+	public void eliminarProductoDeCarrito(long idproducto) {
+
+		carritoDao.delete(productoCarritoDao.eliminarProductoDeCarrito(idproducto));
 	}
 
 	@Override
 	public List<Producto> listaProductoCarrito(int idusuario) {
 		// TODO Auto-generated method stub
-		return carritoDao.listaProductoCarrito(idusuario);
+		return productoCarritoDao.listaProductoCarrito(idusuario);
 	}
-	
+
 }

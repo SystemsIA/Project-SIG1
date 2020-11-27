@@ -36,6 +36,11 @@ public class Categoria implements java.io.Serializable {
 	public Categoria(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public Categoria(String nombre, Set<CategoriaProducto> categoriaProductos) {
+		this.nombre = nombre;
+		this.categoriaProductos = categoriaProductos;
+	}
 
 	public Categoria(String nombre, String desrcipcion,
 			Set<CategoriaSubcategoria> categoriaSubcategoriasForIdsubcategoria,

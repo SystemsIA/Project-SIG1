@@ -8,11 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import pe.edu.unsch.entities.Usuario;
 import pe.edu.unsch.service.UsuarioLoginService;
 
 @Controller
+@RequestMapping
 public class LoginController {
 	@Autowired
 	private UsuarioLoginService usuarioLoginService;
@@ -25,32 +27,29 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public String login(HttpServletRequest request, HttpSession session, Model model) {
-		Usuario user = usuarioLoginService.login(request.getParameter("username"), request.getParameter("password"));
 
-		if (user == null) {
-			model.addAttribute("error", "Cuenta inválida");
-			return "redirect:/login";
-		} 
-		else if( user.getIdusuario() == 1) {
-			session.setAttribute("usuario", user);
+		Usuario[] users = {
+				usuarioLoginService.loginAdmin(request.getParameter("username"), request.getParameter("password")),
+				usuarioLoginService.loginVendedor(request.getParameter("username"), request.getParameter("password")),
+				usuarioLoginService.loginComprador(request.getParameter("username"),
+						request.getParameter("password")) };
+
+		if (users[0] != null) {
+			session.setAttribute("usuario", users[0]);
 			return "redirect:/admin/home";
-		}
-		else if( user.getIdusuario() == 2) {
-			session.setAttribute("usuario", user);
+		} else if (users[1] != null) {
+			session.setAttribute("usuario", users[1]);
 			return "redirect:/seller/home";
-		}
-		else {
-			session.setAttribute("usuario", user.getUsuario());
-			
-			// Aqui se va ha guardar el id del usuario
-			session.setAttribute("idusuario",user.getIdusuario());
-			/* session.setAttribute("usuario", user.getUsuario()); */
+		} else if (users[2] != null) {
+			session.setAttribute("usuario", users[2]);
 			return "redirect:/";
+		} else {
 
+			return "redirect: /login";
 		}
-		
+
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("usuario");

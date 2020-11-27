@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import pe.edu.unsch.entities.Carrito;
 import pe.edu.unsch.entities.Producto;
 
 @Repository
@@ -19,8 +19,7 @@ public interface ProductoCarritoDao extends JpaRepository<Producto, Serializable
 			+ "on r.idrol = rl.idrol " + "where r.nombre = 'Comprador' and u.idusuario=?1", nativeQuery = true)
 	List<Producto> listaProductoCarrito(int idusuario);
 
-	@Modifying
-	@Query(value = "delete Carrito cr where cr.producto.idproducto = ?1")
-	void eliminarProductoDeCarrito(int idproducto);
+	@Query(value = "select cr from Carrito cr where cr.producto.idproducto = ?1")
+	Carrito eliminarProductoDeCarrito(long idproducto);
 
 }

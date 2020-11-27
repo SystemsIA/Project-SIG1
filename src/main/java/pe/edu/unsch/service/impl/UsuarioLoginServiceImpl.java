@@ -11,13 +11,26 @@ import pe.edu.unsch.service.UsuarioLoginService;
 @Repository("usuarioLoginService")
 @Transactional
 public class UsuarioLoginServiceImpl implements UsuarioLoginService {
-	
+
 	@Autowired
 	private UsuarioLoginDao usuarioLoginDao;
 
 	@Override
-	public Usuario login(String usuario, String password) {
-		return usuarioLoginDao.login(usuario, password);
+	public Usuario loginComprador(String usuario, String password) {
+		// TODO Auto-generated method stub
+		return usuarioLoginDao.loginComprador(usuario, password);
+	}
+
+	@Override
+	public Usuario loginVendedor(String usuario, String password) {
+		// TODO Auto-generated method stub
+		return usuarioLoginDao.loginVendedor(usuario, password);
+	}
+
+	@Override
+	public Usuario loginAdmin(String usuario, String password) {
+		// TODO Auto-generated method stub
+		return usuarioLoginDao.loginAdmin(usuario, password);
 	}
 
 }

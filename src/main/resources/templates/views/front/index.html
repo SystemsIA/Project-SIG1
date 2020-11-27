@@ -106,7 +106,9 @@
 								</a>
 								<div class="cart-dropdown">
 									<div class="cart-list">
-
+										<div th:if="${message}" class="alert alert-info" role="alert">
+											<p th:text="${message}">Se quito un producto de su carrito</p>
+										</div>
 										<div th:each="carritoProducto : ${carritoProductos}"
 											class="product-widget">
 											<div class="product-img">
@@ -124,13 +126,11 @@
 													<span class="qty">1x</span>$980.00
 												</h4>
 											</div>
-											<form
-												th:action="@{carrito/{idproducto}(idproducto=${carritoProducto.idproducto})}"
-												method="post">
-												<button class="delete" type="submit">
-													<i class="fa fa-close"></i>
-												</button>
-											</form>
+
+											<a class="delete"
+												th:href="@{/carrito/} + ${carritoProducto.idproducto}">
+												<i class="fa fa-close"></i>
+											</a>
 										</div>
 										<!-- 										<div class="product-widget"> -->
 										<!-- 											<div class="product-img"> -->

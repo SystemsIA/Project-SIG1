@@ -42,7 +42,6 @@ public class Usuario implements java.io.Serializable {
 	private Set<Reclamo> reclamos = new HashSet<Reclamo>(0);
 	private Set<Pedido> pedidos = new HashSet<Pedido>(0);
 	private Set<ProductoValorado> productoValorados = new HashSet<ProductoValorado>(0);
-	
 
 	public Usuario() {
 	}
@@ -56,7 +55,7 @@ public class Usuario implements java.io.Serializable {
 	public Usuario(CompradorFrecuente compradorFrecuente, String usuario, String password, Date ultimoLogin,
 			String historialDesUsuario, Set<Comentario> comentarios, Set<Carrito> carritos,
 			Set<ProductoDeseado> productoDeseados, Set<RolUsuario> rolUsuarios, Set<Reclamo> reclamos,
-			Set<Pedido> pedidos, Set<ProductoValorado> productoValorados,Persona persona) {
+			Set<Pedido> pedidos, Set<ProductoValorado> productoValorados, Persona persona) {
 		this.compradorFrecuente = compradorFrecuente;
 		this.usuario = usuario;
 		this.password = password;
@@ -72,14 +71,11 @@ public class Usuario implements java.io.Serializable {
 		this.persona = persona;
 	}
 
-	
-	
-	
-	public Usuario( String usuario, String password, Integer idusuario, Integer idpersona) {
+	public Usuario(String usuario, String password, Integer idusuario, Integer idpersona) {
 		this.idusuario = idusuario;
 		this.usuario = usuario;
 		this.password = password;
-		this.idpersona= idpersona;
+		this.idpersona = idpersona;
 	}
 
 	@Id
@@ -222,5 +218,4 @@ public class Usuario implements java.io.Serializable {
 		this.idpersona = idpersona;
 	}
 
-	
 }

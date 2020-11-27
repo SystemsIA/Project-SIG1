@@ -22,4 +22,17 @@ public interface CategoriaDao extends JpaRepository<Categoria, Integer>{
 	
 	@Query("select c from Categoria c where c.idcategoria = ?1")
 	Categoria categoriad(int id);
+	
+	@Query(value = "select"
+			+ "	ca "
+			+ "	from Categoria ca"
+			+ "	inner join ca.categoriaProductos cp"
+			+ "	inner join cp.producto pr"
+			+ "	inner join pr.persona per"
+			+ "	inner join per.usuario us"
+			+ "	inner join us.rolUsuarios ruls"
+			+ "	inner join ruls.rol rl"
+			+ "	where rl.nombre = 'Vendedor' and us.idusuario=?1 group by ca.idcategoria")
+	List<Categoria> listaCategoriVendedor(Integer idusuario);
+	
 }
