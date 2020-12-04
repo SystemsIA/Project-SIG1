@@ -32,7 +32,7 @@ public interface CategoriaDao extends JpaRepository<Categoria, Integer>{
 			+ "	inner join per.usuario us"
 			+ "	inner join us.rolUsuarios ruls"
 			+ "	inner join ruls.rol rl"
-			+ "	where rl.nombre = 'Vendedor' and us.idusuario=?1 group by ca.idcategoria")
+			+ "	where rl.nombre = 'Vendedor' and us.idusuario=?1 group by ca.idcategoria" )
 	List<Categoria> listaCategoriVendedor(Integer idusuario);
 	
 }

@@ -1,6 +1,5 @@
-package pe.edu.unsch.controller;
+package pe.edu.unsch.controller.vendedor;
 
-import javax.persistence.NonUniqueResultException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +51,10 @@ public class FrontSellerController {
 		Usuario user = (Usuario) httpSession.getAttribute("usuario");
 
 		model.addAttribute("productosVendedor", productoService.listaProductosVendedor(idVendedor));
-		model.addAttribute("usuario", user).addAttribute("categorias",
-				categoriaService.listaCategoriVendedor(idVendedor));
+		model.addAttribute("usuario", user);
+		model.addAttribute("categorias", categoriaService.listaCategoriVendedor(idVendedor));
+		
+		
 		return "views/vendedor/sellerViews/categoriaProducts";
 	}
 

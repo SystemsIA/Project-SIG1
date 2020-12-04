@@ -23,5 +23,7 @@ public interface UsuarioLoginDao extends JpaRepository<Usuario, Serializable> {
 	@Query("select u " + "from Usuario u inner join u.rolUsuarios ru inner join ru.rol rl "
 			+ "where rl.nombre='Administrador' and u.usuario = ?1 and u.password = ?2")
 	Usuario loginAdmin(String usuario, String password);
+	
 
+	Usuario findByUsuario(String usuario);
 }

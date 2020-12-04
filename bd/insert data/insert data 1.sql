@@ -1,6 +1,6 @@
 -- Garantia
 
-INSERT INTO garantia_producto VALUES (1,'2020-12-10 21:20:00','2020-12-10 21:20:00', 'Producto Garantizadoxdxd');
+INSERT INTO garantia_producto VALUES (3,'2020-12-10 21:20:00','2020-12-10 21:20:00', 'Producto Garantizadoxdxd');
 
 
 -- CATEGORIAS

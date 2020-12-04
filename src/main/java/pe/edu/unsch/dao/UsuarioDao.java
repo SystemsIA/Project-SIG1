@@ -18,4 +18,5 @@ public interface UsuarioDao extends JpaRepository<Usuario, Serializable> {
 			+ "join us.rolUsuarios rp " + "join rp.rol nr " + "where nr.nombre = 'Comprador' and us.idusuario = ?1")
 	List<Producto> listarProductosDeseados(int idusuario);
 
+	Usuario findByUsuario(String usuario);
 }

@@ -20,7 +20,9 @@ public class CategoriaProductoServiceImpl implements CategoriaProductoService{
 
 	@Override
 	public void eliminarCategoriaProducto(long idproducto) {
+		
 		categoriaProductoDao.delete(productoDao.categoriaProducto(idproducto));
+		
 	}
 	
 }

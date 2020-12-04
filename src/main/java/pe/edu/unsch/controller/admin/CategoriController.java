@@ -1,4 +1,4 @@
-package pe.edu.unsch.controller;
+package pe.edu.unsch.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -27,6 +27,10 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "usuario", catalog = "marketplacebd_test", uniqueConstraints = @UniqueConstraint(columnNames = "usuario"))
 public class Usuario implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer idusuario;
 	private CompradorFrecuente compradorFrecuente;
 	private String usuario;
@@ -44,6 +48,12 @@ public class Usuario implements java.io.Serializable {
 	private Set<ProductoValorado> productoValorados = new HashSet<ProductoValorado>(0);
 
 	public Usuario() {
+	}
+
+	public Usuario(String usuario, String password,  Persona persona) {
+		this.usuario = usuario;
+		this.password = password;
+		this.persona = persona;
 	}
 
 	public Usuario(String usuario, String password, String historialDesUsuario) {
@@ -109,7 +119,7 @@ public class Usuario implements java.io.Serializable {
 		this.usuario = usuario;
 	}
 
-	@Column(name = "password", nullable = false, length = 120)
+	@Column(name = "password", nullable = false, length = 300)
 	public String getPassword() {
 		return this.password;
 	}
@@ -128,7 +138,7 @@ public class Usuario implements java.io.Serializable {
 		this.ultimoLogin = ultimoLogin;
 	}
 
-	@Column(name = "historial_des_usuario", nullable = false, length = 45)
+	@Column(name = "historial_des_usuario", nullable = true, length = 45)
 	public String getHistorialDesUsuario() {
 		return this.historialDesUsuario;
 	}

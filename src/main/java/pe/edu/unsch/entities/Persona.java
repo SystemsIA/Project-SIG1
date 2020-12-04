@@ -44,6 +44,13 @@ public class Persona implements java.io.Serializable {
 		this.correo = correo;
 	}
 
+	public Persona(String nombre, String apellido, String telefono, String correo) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.telefono = telefono;
+		this.correo = correo;
+	}
+
 	public Persona(Usuario usuario, String nombre, String apellido, String telefono, String foto, String correo,
 			Set<Producto> productos, Set<Reporte> reportes, Set<PersonaDireccion> personaDireccions,
 			Set<LibroReclamacion> libroReclamacions, Set<ProductoMasVisto> productoMasVistos,

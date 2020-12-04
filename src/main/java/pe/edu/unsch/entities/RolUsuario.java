@@ -26,6 +26,11 @@ public class RolUsuario implements java.io.Serializable {
 	public RolUsuario() {
 	}
 
+	public RolUsuario(Rol rol, Usuario usuario) {
+		this.rol = rol;
+		this.usuario = usuario;
+	}
+
 	public RolUsuario(Rol rol, Usuario usuario, byte estado) {
 		this.rol = rol;
 		this.usuario = usuario;

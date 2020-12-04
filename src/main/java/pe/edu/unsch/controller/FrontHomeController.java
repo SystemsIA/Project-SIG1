@@ -15,7 +15,7 @@ import pe.edu.unsch.service.ProductoCarritoService;
 import pe.edu.unsch.service.ProductoService;
 
 @Controller
-@RequestMapping
+@RequestMapping({"/"})
 public class FrontHomeController {
 
 	@Autowired
@@ -24,14 +24,19 @@ public class FrontHomeController {
 	@Autowired
 	private ProductoCarritoService carritoService;
 
-	@GetMapping({ "/", "/front" })
+	@GetMapping({"/front","/"})
 	public String home(Model model, HttpSession httpSession) {
 
 		model.addAttribute("title", "Marketplace").addAttribute("productosDestacados",
 				productoService.listaProductoDestacados());
-
-		Usuario user = (Usuario) httpSession.getAttribute("usuario");
-		model.addAttribute("carritoProductos", carritoService.listaProductoCarrito(user.getIdusuario()));
+		
+		try {
+			
+			Usuario user = (Usuario) httpSession.getAttribute("usuario");
+			model.addAttribute("carritoProductos", carritoService.listaProductoCarrito(user.getIdusuario()));
+		} catch (NullPointerException e) {
+			return "views/front/index";
+		}
 
 		return "views/front/index";
 	}
