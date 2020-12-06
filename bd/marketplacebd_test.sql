@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: localhost    Database: marketplacebd_test
+-- Host: 127.0.0.1    Database: marketplacebd_test
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -72,7 +72,7 @@ DROP TABLE IF EXISTS `carrito`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carrito` (
-  `idcarrito` int unsigned NOT NULL,
+  `idcarrito` int NOT NULL AUTO_INCREMENT,
   `precio_total` double NOT NULL,
   `unidad_por_producto` int NOT NULL,
   `idproducto` bigint NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE `carrito` (
   CONSTRAINT `fk_carrito_cupon` FOREIGN KEY (`idcupon`) REFERENCES `cupon_descuento` (`idcupon`),
   CONSTRAINT `fk_carrito_producto_producto1` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON DELETE CASCADE,
   CONSTRAINT `fk_carrito_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +94,7 @@ CREATE TABLE `carrito` (
 
 LOCK TABLES `carrito` WRITE;
 /*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
+INSERT INTO `carrito` VALUES (1,0,1,15,1,8),(2,0,0,14,15,8),(4,0,0,7,17,9),(5,0,0,10,18,9),(6,0,0,14,19,9),(7,0,0,7,20,9),(8,0,0,6,21,9);
 /*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,8 +111,9 @@ CREATE TABLE `categoria` (
   `desrcipcion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idcategoria`),
   UNIQUE KEY `idTipoProducto_UNIQUE` (`idcategoria`),
-  UNIQUE KEY `nombre_UNIQUE` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`),
+  UNIQUE KEY `UK35t4wyxqrevf09uwx9e9p6o75` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,6 +257,7 @@ CREATE TABLE `comprobante_venta` (
   PRIMARY KEY (`idcomprobanteventa`),
   UNIQUE KEY `numeroRUC_UNIQUE` (`numero_ruc`),
   UNIQUE KEY `idFactura_UNIQUE` (`idcomprobanteventa`),
+  UNIQUE KEY `UK9wkfj73a6gy0eqg22bxrs3ffu` (`numero_ruc`),
   KEY `fk_comprobante_boleta_idx` (`idboletaventa`),
   KEY `fk_comprobante_factura_idx` (`idfactura`),
   CONSTRAINT `fk_comprobante_boleta` FOREIGN KEY (`idboletaventa`) REFERENCES `boleta_venta` (`idboletaventa`),
@@ -313,7 +316,7 @@ CREATE TABLE `cupon_descuento` (
   UNIQUE KEY `idCuponDescuento_UNIQUE` (`idcupon`),
   KEY `fk_cupon_producto_idx` (`idproducto`),
   CONSTRAINT `fk_cupon_producto` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,6 +325,7 @@ CREATE TABLE `cupon_descuento` (
 
 LOCK TABLES `cupon_descuento` WRITE;
 /*!40000 ALTER TABLE `cupon_descuento` DISABLE KEYS */;
+INSERT INTO `cupon_descuento` VALUES (1,12.00,15),(15,0.00,14),(16,0.00,7),(17,0.00,7),(18,0.00,10),(19,0.00,14),(20,0.00,7),(21,0.00,6);
 /*!40000 ALTER TABLE `cupon_descuento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -420,7 +424,7 @@ CREATE TABLE `garantia_producto` (
   `descripcion` varchar(300) NOT NULL,
   PRIMARY KEY (`idgarantiaproducto`),
   UNIQUE KEY `idGarantiaProducto_UNIQUE` (`idgarantiaproducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,7 +433,7 @@ CREATE TABLE `garantia_producto` (
 
 LOCK TABLES `garantia_producto` WRITE;
 /*!40000 ALTER TABLE `garantia_producto` DISABLE KEYS */;
-INSERT INTO `garantia_producto` VALUES (1,'2020-12-10 21:20:00','2020-12-10 21:20:00','Producto Garantizadoxdxd');
+INSERT INTO `garantia_producto` VALUES (1,'2020-12-10 21:20:00','2020-12-10 21:20:00','Producto Garantizadoxdxd'),(3,'2020-12-10 21:20:00','2020-12-10 21:20:00','Producto Garantizadoxdxd');
 /*!40000 ALTER TABLE `garantia_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -566,7 +570,9 @@ CREATE TABLE `modulo` (
   PRIMARY KEY (`idmodulo`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   UNIQUE KEY `idModulo_UNIQUE` (`idmodulo`),
-  UNIQUE KEY `icono_UNIQUE` (`icono`)
+  UNIQUE KEY `icono_UNIQUE` (`icono`),
+  UNIQUE KEY `UKonow1lffsqq6uwky4m02o27on` (`icono`),
+  UNIQUE KEY `UK6al8pi9wgavv0x4j0dsebdtq9` (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -600,6 +606,7 @@ CREATE TABLE `notificacion` (
   `idpersona` int NOT NULL,
   PRIMARY KEY (`idnotificacionventa`),
   UNIQUE KEY `notificacion_pago_realizado_UNIQUE` (`notificacion_pago_realizado`),
+  UNIQUE KEY `UK2wai3yahwgocd86xq9p00yxpl` (`notificacion_pago_realizado`),
   KEY `idpedido_idx` (`idpedido`) /*!80000 INVISIBLE */,
   KEY `idpago_idx` (`idpago`),
   KEY `fk_persona1_idx` (`idpersona`),
@@ -819,6 +826,7 @@ CREATE TABLE `pedido` (
   PRIMARY KEY (`idpedido`),
   UNIQUE KEY `codigoPedido_UNIQUE` (`codigo`),
   UNIQUE KEY `idPedido_UNIQUE` (`idpedido`),
+  UNIQUE KEY `UKp6h3xykm0g7lqxwbo6suwqujj` (`codigo`),
   KEY `fk_pedido_pago1_idx` (`idpago`),
   KEY `fk_pedido_usuario1_idx` (`idusuario`),
   KEY `fk_pedidio_factura1_idx` (`idcomprobanteventa`),
@@ -859,7 +867,7 @@ CREATE TABLE `persona` (
   PRIMARY KEY (`idpersona`),
   KEY `fk_usuario2_idx` (`idusuario`),
   CONSTRAINT `fk_usuario2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -868,7 +876,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (2,'Pablo','Lepzilin','961090046','prueba','pablito@gmail.com',1),(3,'Juan','Mendoza','985425789','prueba','juan@gmail.com',2),(4,'Lorenzo','Prado','987461233','prueba','lorenzo@gmail.com',3),(5,'Lina','Frozen','987456235','prueba','lina@outlook.com',4),(6,'Akasha','Queen','915948753','prueba','aksha@gmail.com',5);
+INSERT INTO `persona` VALUES (2,'Pablo','Lepzilin','961090046','prueba','pablito@gmail.com',1),(3,'Juan','Mendoza','985425789','prueba','juan@gmail.com',2),(4,'Lorenzo','Prado','987461233','prueba','lorenzo@gmail.com',3),(5,'Lina','Frozen','987456235','prueba','lina@outlook.com',4),(6,'Akasha','Queen','915948753','prueba','aksha@gmail.com',5),(7,'','','123456789',NULL,'josew@gmail.com',8),(8,'','','123456789',NULL,'comprador@gmail.com',9);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -951,6 +959,7 @@ CREATE TABLE `producto` (
   PRIMARY KEY (`idproducto`),
   UNIQUE KEY `idProducto_UNIQUE` (`idproducto`),
   UNIQUE KEY `codigoProducto_UNIQUE` (`codigo`),
+  UNIQUE KEY `UKkxdt4u9c4w6vveo7ylph4pd09` (`codigo`),
   KEY `fk_producto_garantia_producto1_idx` (`idgarantiaproducto`),
   KEY `fk_producto_persona1_idx` (`idpersona`),
   KEY `fk_producto_LibroReclamaciones1_idx` (`idlibroreclamaciones`),
@@ -1084,9 +1093,12 @@ CREATE TABLE `producto_mas_visto` (
   `idProducto` bigint NOT NULL,
   `idpersona` int NOT NULL,
   `idproductovisto` int NOT NULL,
+  `id_producto` bigint NOT NULL,
   PRIMARY KEY (`idproductovisto`),
   KEY `idProducto_idx` (`idProducto`),
   KEY `idPersona_idx` (`idpersona`),
+  KEY `FKdafve6d8ebnrqg50ovuiobed2` (`id_producto`),
+  CONSTRAINT `FKdafve6d8ebnrqg50ovuiobed2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`idproducto`),
   CONSTRAINT `idPersona` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`),
   CONSTRAINT `idProducto` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idproducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -1255,7 +1267,8 @@ CREATE TABLE `rol` (
   `idrol` int NOT NULL,
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`idrol`),
-  UNIQUE KEY `nombreRol_UNIQUE` (`nombre`)
+  UNIQUE KEY `nombreRol_UNIQUE` (`nombre`),
+  UNIQUE KEY `UK43kr6s7bts1wqfv43f7jd87kp` (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1316,7 +1329,7 @@ CREATE TABLE `rol_usuario` (
   KEY `fk_usuario_rol_idx` (`idusuario`) /*!80000 INVISIBLE */,
   CONSTRAINT `fk_rol_usuario_id` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`),
   CONSTRAINT `fk_usuario_rol_id` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1325,7 +1338,7 @@ CREATE TABLE `rol_usuario` (
 
 LOCK TABLES `rol_usuario` WRITE;
 /*!40000 ALTER TABLE `rol_usuario` DISABLE KEYS */;
-INSERT INTO `rol_usuario` VALUES (1,1,2,1),(2,1,2,2),(3,1,2,3),(4,1,2,4),(5,1,2,5);
+INSERT INTO `rol_usuario` VALUES (1,1,2,1),(2,1,2,2),(3,1,2,3),(4,1,2,4),(5,1,2,5),(6,0,1,8),(7,0,3,9);
 /*!40000 ALTER TABLE `rol_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1369,6 +1382,8 @@ CREATE TABLE `sub_modulo` (
   UNIQUE KEY `idSubModulo_UNIQUE` (`idsubmodulo`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`),
   UNIQUE KEY `estado_UNIQUE` (`estado`),
+  UNIQUE KEY `UKncsts07fi0chqbxxcd622pw0v` (`estado`),
+  UNIQUE KEY `UKea0esd834qnbva4kxyllc9369` (`nombre`),
   KEY `fk_sub_modulo_modulo1_idx` (`idmodulo`),
   CONSTRAINT `fk_sub_modulo_modulo1` FOREIGN KEY (`idmodulo`) REFERENCES `modulo` (`idmodulo`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -1454,7 +1469,9 @@ CREATE TABLE `tarjeta` (
   PRIMARY KEY (`idtarjeta`),
   UNIQUE KEY `idDeposito_UNIQUE` (`idtarjeta`),
   UNIQUE KEY `numeroTarjeta_UNIQUE` (`numero_tarjeta`),
-  UNIQUE KEY `codVerificaciónTarjeta_UNIQUE` (`cod_verificacion_tarjeta`)
+  UNIQUE KEY `codVerificaciónTarjeta_UNIQUE` (`cod_verificacion_tarjeta`),
+  UNIQUE KEY `UK5l2aaetlq81rlo10x7lonpfhi` (`cod_verificacion_tarjeta`),
+  UNIQUE KEY `UKdq50xydekabbhs9c8wgei356c` (`numero_tarjeta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1504,16 +1521,17 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `idusuario` int NOT NULL AUTO_INCREMENT,
   `usuario` varchar(90) NOT NULL,
-  `password` varchar(120) NOT NULL,
+  `password` varchar(300) DEFAULT NULL,
   `ultimo_login` timestamp NULL DEFAULT NULL,
   `idcompradorfrecuente` int DEFAULT NULL,
   `historial_des_usuario` varchar(45) NOT NULL,
   PRIMARY KEY (`idusuario`),
   UNIQUE KEY `usuario_UNIQUE` (`usuario`),
   UNIQUE KEY `idusuario_UNIQUE` (`idusuario`),
+  UNIQUE KEY `UKi02kr8ui5pqddyd7pkm3v4jbt` (`usuario`),
   KEY `fk_usuario_comprador_frecuente1_idx` (`idcompradorfrecuente`),
   CONSTRAINT `fk_usuario_comprador_frecuente1` FOREIGN KEY (`idcompradorfrecuente`) REFERENCES `comprador_frecuente` (`idcompradorfrecuente`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1522,7 +1540,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Pablo','Lepzilin','2020-12-11 02:20:00',1,'prueba'),(2,'Juan','juan','2020-11-11 02:20:00',1,'prueba'),(3,'Lorenzo','lorenzo','2020-10-11 02:35:00',1,'prueba'),(4,'Lina','lina','2020-10-10 02:40:00',2,'prueba'),(5,'Akasha','akasha','2020-10-09 02:00:00',2,'prueba');
+INSERT INTO `usuario` VALUES (1,'Pablo','Lepzilin','2020-12-11 02:20:00',1,'prueba'),(2,'Juan','juan','2020-11-11 02:20:00',1,'prueba'),(3,'Lorenzo','lorenzo','2020-10-11 02:35:00',1,'prueba'),(4,'Lina','lina','2020-10-10 02:40:00',2,'prueba'),(5,'Akasha','akasha','2020-10-09 02:00:00',2,'prueba'),(8,'josew','$2a$10$Ju3gg13aparHHKHQxvpZ/.J.OOshu.u1TWSKnLFPBuKJc5oIwpa1.','2020-12-05 02:40:16',2,'Prueba'),(9,'comprador','$2a$10$5Rad4oYakEccZlpGAmFDHOL88qA44RmlG0wCFo2jk/4TUzL7qhG0y','2020-12-06 01:45:46',2,'Prueba');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1592,4 +1610,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-21  1:10:34
+-- Dump completed on 2020-12-05 21:31:54

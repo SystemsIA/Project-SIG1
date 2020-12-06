@@ -14,8 +14,7 @@ import pe.edu.unsch.entities.Producto;
 @Repository
 public interface ProductoDao extends JpaRepository<Producto, Serializable> {
 
-	@Query(value = " SELECT prod FROM Producto prod" + " WHERE prod.idproducto = ?1 ")
-	Producto mostrardetalles(long idproducto);
+	Producto findByIdproducto(long idproducto);
 
 	@Query(value = "select pr " + "from Producto pr " + "where pr.destacado=1")
 	List<Producto> listaProductoDestacados();
@@ -25,8 +24,7 @@ public interface ProductoDao extends JpaRepository<Producto, Serializable> {
 			+ "cat.nombre as nombreCategoria, pro.persona as persona, pro.cantidadventas as cantidadventas, pro.marca as marca, gp.descripcion as desGarantia) "
 			+ "from Producto pro " + "inner join pro.categoriaProductos cp " + "inner join cp.categoria cat "
 			+ "inner join pro.persona per " + "join per.usuario u " + "join u.rolUsuarios ruls " + "join ruls.rol rl "
-			+ "inner join pro.garantiaProducto gp where rl.nombre='Vendedor' and u.idusuario = ?1 "
-			+ " order by nombre")
+			+ "inner join pro.garantiaProducto gp where rl.nombre='Vendedor' and u.idusuario = ?1 " + "order by nombre")
 	List<Producto> listaProductosVendedor(Integer idPersona);
 
 	@Query(value = "select distinct cp from CategoriaProducto cp inner join cp.producto pr where pr.idproducto = ?1")

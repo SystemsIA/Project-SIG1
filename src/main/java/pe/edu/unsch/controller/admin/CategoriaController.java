@@ -7,26 +7,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pe.edu.unsch.annotation.permisos.IsAdministrador;
 import pe.edu.unsch.service.CategoriaService;
 
+@IsAdministrador
 @Controller
 @RequestMapping("/admin")
-public class CategoriController {
-	
+public class CategoriaController {
+
 	@Autowired
 	private CategoriaService categoriaService;
 
-	@GetMapping("/home")
+	@GetMapping({ "/home", "" })
 	public String index() {
 		return "views/admin/home/index";
 	}
-	
+
 	@GetMapping("/categori")
 	public String index(Model model) {
 		model.addAttribute("categorias", categoriaService.listaCategorias());
 		return "views/admin/Categori/index";
 	}
-	
+
 	@GetMapping("/eliminarCategoria/{idCategoria}")
 	public String eliminarCategoria(Model model, @PathVariable Integer idCategoria) {
 		categoriaService.borrarCategoria(idCategoria);

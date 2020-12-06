@@ -3,20 +3,25 @@ package pe.edu.unsch.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
 import pe.edu.unsch.service.UsuarioLoginService;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(jsr250Enabled = true, prePostEnabled = true, securedEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
+	private static final String KEY_SECRET = "miclavesecreta";
+
 	@Autowired
 	private UsuarioLoginService loginServiceImpl;
-	
+
 	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
@@ -33,12 +38,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/assets/**","/img/**").permitAll()
-			.antMatchers("/", "/front", "/login", "/product/**", "/registrarse").permitAll()
-			.antMatchers("/seller/**").hasAuthority("Vendedor")
-			.antMatchers("/admin/**").hasAuthority("Administrador")
-			.antMatchers("/client/**").hasAuthority("Comprador")
-				.anyRequest().authenticated()
+				.anyRequest().permitAll()
 				.and()
 			.formLogin()
 				.loginPage("/login")
@@ -48,13 +48,22 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.and()
 			.logout()
-				.logoutSuccessUrl("/")
+				.logoutSuccessUrl("/front")
 				.invalidateHttpSession(true)
+				.clearAuthentication(true)
 				.and()
-			.httpBasic()
+			.rememberMe()
+				.rememberMeServices(getRememberMeServices())
+				.key(KEY_SECRET)
 				.and()
 			.exceptionHandling()
 				.accessDeniedPage("/403");
 	}
-
+	
+	private TokenBasedRememberMeServices getRememberMeServices() {
+		TokenBasedRememberMeServices service = new TokenBasedRememberMeServices(KEY_SECRET, loginServiceImpl);
+		service.setCookieName("remember-cookie");
+		service.setTokenValiditySeconds(100);
+		return service;
+	}
 }

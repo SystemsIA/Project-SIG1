@@ -6,7 +6,7 @@ import pe.edu.unsch.entities.Producto;
 
 public interface ProductoService {
 	
-	Producto mostrardetalles(long idproducto);
+	Producto traerProducto(long idproducto);
 
 	List<Producto> listaProductoDestacados();
 	

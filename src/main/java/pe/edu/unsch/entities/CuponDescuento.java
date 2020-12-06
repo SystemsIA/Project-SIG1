@@ -22,6 +22,10 @@ import javax.persistence.Table;
 @Table(name = "cupon_descuento", catalog = "marketplacebd_test")
 public class CuponDescuento implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer idcupon;
 	private Producto producto;
 	private BigDecimal valorDescuento;

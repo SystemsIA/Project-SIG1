@@ -26,6 +26,10 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "producto", catalog = "marketplacebd_test", uniqueConstraints = @UniqueConstraint(columnNames = "codigo"))
 public class Producto implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long idproducto;
 	private GarantiaProducto garantiaProducto;
 	private LibroReclamacion libroReclamacion;

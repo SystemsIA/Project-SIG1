@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import pe.edu.unsch.entities.Producto;
 
 @Repository
-public interface ProductosJuntosDao extends JpaRepository<Producto, Serializable>{
-	
-	
-		@Query(value = "select p.* From producto p inner join productosjuntos pj on (p.idproducto = pj.producto2) where pj.producto1 = ?1", nativeQuery= true)
-		public List<Producto> ListarProductosJuntosH(long idproducto);
+public interface ProductosJuntosDao extends JpaRepository<Producto, Serializable> {
+
+	@Query(value = "select p from Producto p " + "inner join p.productosjuntosesForProducto2 pj "
+			+ "inner join pj.productoByProducto1 p1 " + "where p1.idproducto = ?1")
+	public List<Producto> ListarProductosJuntosH(long idproducto);
 }

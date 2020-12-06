@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.unsch.annotation.permisos.IsAuthenticated;
 import pe.edu.unsch.entities.forms.UsuarioForm;
 import pe.edu.unsch.service.UsuarioService;
 
@@ -34,16 +34,17 @@ public class LoginController {
 		try {
 			if (!authentication.isAuthenticated())
 				return "views/login/login";
+			else
+				return "redirect:/";
 
 		} catch (NullPointerException e) {
 			return "views/login/login";
 		}
 
-		return "views/login/login";
 	}
 
+	@IsAuthenticated
 	@GetMapping("/logout")
-	@Secured(value = { "Comprador", "Administrador", "Vendedor" })
 	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -51,7 +52,8 @@ public class LoginController {
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return "redirect:/login";
+
+		return "redirect:/";
 	}
 
 	@PostMapping(path = "/registrarse")
@@ -67,7 +69,7 @@ public class LoginController {
 			redirectAttributes.addFlashAttribute("message", "Se pudo completar el registro");
 			usuarioService.crearUsuario(usuarioForm.getUsuario(), usuarioForm.getPassword());
 
-			return "redirect: /login";
+			return "redirect:/login";
 		}
 	}
 

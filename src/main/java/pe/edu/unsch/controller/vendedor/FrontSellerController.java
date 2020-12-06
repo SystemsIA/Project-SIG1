@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.unsch.annotation.permisos.IsVendedor;
 import pe.edu.unsch.entities.Usuario;
 import pe.edu.unsch.service.CategoriaProductoService;
 import pe.edu.unsch.service.CategoriaService;
 import pe.edu.unsch.service.ProductoService;
 
+@IsVendedor
 @Controller
 @RequestMapping("seller")
 public class FrontSellerController {
@@ -29,7 +31,7 @@ public class FrontSellerController {
 	@Autowired
 	private CategoriaProductoService categoriaProductoService;
 
-	@GetMapping("/home")
+	@GetMapping({ "/home", "" })
 	public String HomeVendedor(Model model, HttpSession httpSession) {
 		model.addAttribute("usuario", httpSession.getAttribute("usuario"));
 		return "views/vendedor/home/index";
@@ -53,8 +55,7 @@ public class FrontSellerController {
 		model.addAttribute("productosVendedor", productoService.listaProductosVendedor(idVendedor));
 		model.addAttribute("usuario", user);
 		model.addAttribute("categorias", categoriaService.listaCategoriVendedor(idVendedor));
-		
-		
+
 		return "views/vendedor/sellerViews/categoriaProducts";
 	}
 

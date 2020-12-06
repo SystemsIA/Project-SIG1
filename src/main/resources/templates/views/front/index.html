@@ -34,8 +34,9 @@
 				</ul>
 				<ul class="header-links pull-right">
 					<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-					<li><a href="#"><i class="fa fa-user-o"></i>Mi cuenta</a></li>
+					<li><a sec:authorize="isAuthenticated()" href="#"><i class="fa fa-user-o"></i>Mi cuenta</a></li>
 					<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}"><i class="fa fa-sign-out" aria-hidden="true"></i>Cerrar Sesión</a></li>
+					<li><a sec:authorize="!isAuthenticated()" th:href="@{/login}"><i class="fa fa-sign-in" aria-hidden="true"></i>Iniciar Sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -82,7 +83,8 @@
 							<!-- Cart -->
 							<div class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> <i class="fa fa-shopping-cart"></i> <span>Mis Compras</span> <span
-									class="qty">3</span>
+									sec:authorize="isAuthenticated()" class="qty" th:text="${carritoProductos.size()}"
+								></span>
 								</a>
 								<div class="cart-dropdown">
 									<div class="cart-list">
@@ -95,24 +97,23 @@
 											</div>
 											<div class="product-body">
 												<h3 class="product-name">
-													<a th:href="@{/product/{id_producto}(id_producto=${carritoProducto.idproducto})}" th:text="${carritoProducto.nombre}"></a>
+													<a th:href="@{/product(idproducto=${carritoProducto.idproducto})}" th:text="${carritoProducto.nombre}"></a>
 												</h3>
 												<h4 class="product-price">
-													<span class="qty">1x</span>$980.00
+													<span class="qty">$[[${carritoProducto.precioUnitario}]]</span>
 												</h4>
 											</div>
-											<a class="delete" th:href="@{/carrito/} + ${carritoProducto.idproducto}"> <i class="fa fa-close"></i>
+											<a class="delete" th:href="@{/carrito(idproducto=${carritoProducto.idproducto})}"> <i class="fa fa-close"></i>
 											</a>
 										</div>
-										<!-- 									<div class="cart-summary"> -->
-										<!-- 										<small>3 Item(s) selected</small> -->
-										<!-- 										<h5>SUBTOTAL: $2940.00</h5> -->
-										<!-- 									</div> -->
-										<!-- 									<div class="cart-btns"> -->
-										<!-- 										<a href="#">View Cart</a> <a href="../../checkout">Checkout -->
-										<!-- 											<i class="fa fa-arrow-circle-right"></i> -->
-										<!-- 										</a> -->
-										<!-- 									</div> -->
+										<div class="cart-summary" sec:authorize="isAuthenticated()">
+											<small>[[${carritoProductos.size()}]] Producto(s) seleccionado(s)</small>
+											<h5>SUBTOTAL: $[[${#aggregates.sum(carritoProductos.?[precioUnitario != null].![precioUnitario])}]]</h5>
+										</div>
+										<div class="cart-btns">
+											<a href="#">View Cart</a> <a href="../../checkout">Checkout <i class="fa fa-arrow-circle-right"></i>
+											</a>
+										</div>
 									</div>
 								</div>
 								<!-- /Cart -->
@@ -220,10 +221,24 @@
 		<div class="container">
 			<!-- row -->
 			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h3 th:text="${productosDestacados.size() != 0} ? 'PRODUCTOS DESTACADOS': 'NO HAY PRODUCTO DESTACADOS'" class="title"></h3>
+						<div class="section-nav">
+							<ul class="section-tab-nav tab-nav">
+								<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
+								<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
+								<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
+								<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /section title -->
 				<!-- Products tab & slick -->
 				<div class="col-md-12">
 					<div class="row">
-						<h1 th:text="${productosDestacados.size() != 0} ? 'PRODUCTOS DESTACADOS': 'NO HAY PRODUCTO DESTACADOS'"></h1>
 						<div class="products-tabs">
 							<!-- tab -->
 							<div id="tab1" class="tab-pane active">
@@ -239,7 +254,7 @@
 										<div class="product-body">
 											<p class="product-category">Category 1</p>
 											<h3 class="product-name">
-												<a th:href="@{/product/{id_producto}(id_producto=${productoDestacado.idproducto})}" th:text=${productoDestacado.nombre}></a>
+												<a th:href="@{/product(idproducto=${productoDestacado.idproducto})}" th:text=${productoDestacado.nombre}></a>
 											</h3>
 											<h4 class="product-price">
 												$981.00
@@ -261,225 +276,10 @@
 											</div>
 										</div>
 										<div class="add-to-cart">
-											<button class="add-to-cart-btn">
-												<i class="fa fa-shopping-cart"></i> add to cart
-											</button>
-										</div>
-									</div>
-									<!-- /product -->
-								</div>
-								<div id="slick-nav-1" class="products-slick-nav"></div>
-							</div>
-							<!-- /tab -->
-						</div>
-					</div>
-				</div>
-				<div class=""></div>
-				<!-- section title -->
-				<div class="col-md-12">
-					<div class="section-title">
-						<h3 class="title">New Products</h3>
-						<div class="section-nav">
-							<ul class="section-tab-nav tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-								<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-								<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-								<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- /section title -->
-				<div class="col-md-12">
-					<div class="row">
-						<div class="products-tabs">
-							<!-- tab -->
-							<div id="tab1" class="tab-pane active">
-								<div class="products-slick" data-nav="#slick-nav-1">
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="../../assets/front/img/product01.png">
-											<div class="product-label">
-												<span class="sale">-30%</span> <span class="new">NEW</span>
-											</div>
-										</div>
-										<div class="product-body">
-											<p class="product-category">Category</p>
-											<h3 class="product-name">
-												<a href="../../product">product name goes here</a>
-											</h3>
-											<h4 class="product-price">
-												$981.00
-												<del class="product-old-price">$990.00</del>
-											</h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist">
-													<i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
-												</button>
-												<button class="add-to-compare">
-													<i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span>
-												</button>
-												<button class="quick-view">
-													<i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
-												</button>
-											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn">
-												<i class="fa fa-shopping-cart"></i> add to t
-											</button>
-										</div>
-									</div>
-									<!-- /product -->
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="../../assets/front/img/product02.png" alt="">
-											<div class="product-label">
-												<span class="new">NEW</span>
-											</div>
-										</div>
-										<div class="product-body">
-											<p class="product-category">Category</p>
-											<h3 class="product-name">
-												<a href="../../product">product name goes here</a>
-											</h3>
-											<h4 class="product-price">
-												$980.00
-												<del class="product-old-price">$990.00</del>
-											</h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i>
-											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist">
-													<i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
-												</button>
-												<button class="add-to-compare">
-													<i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span>
-												</button>
-												<button class="quick-view">
-													<i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
-												</button>
-											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn">
-												<i class="fa fa-shopping-cart"></i> add to cart
-											</button>
-										</div>
-									</div>
-									<!-- /product -->
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="../../assets/front/img/product03.png" alt="">
-											<div class="product-label">
-												<span class="sale">-30%</span>
-											</div>
-										</div>
-										<div class="product-body">
-											<p class="product-category">Category</p>
-											<h3 class="product-name">
-												<a href="../../product">product name goes here</a>
-											</h3>
-											<h4 class="product-price">
-												$980.00
-												<del class="product-old-price">$990.00</del>
-											</h4>
-											<div class="product-rating"></div>
-											<div class="product-btns">
-												<button class="add-to-wishlist">
-													<i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
-												</button>
-												<button class="add-to-compare">
-													<i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span>
-												</button>
-												<button class="quick-view">
-													<i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
-												</button>
-											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn">
-												<i class="fa fa-shopping-cart"></i> add to cart
-											</button>
-										</div>
-									</div>
-									<!-- /product -->
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="../../assets/front/img/product04.png" alt="">
-										</div>
-										<div class="product-body">
-											<p class="product-category">Category</p>
-											<h3 class="product-name">
-												<a href="../../product">product name goes here</a>
-											</h3>
-											<h4 class="product-price">
-												$980.00
-												<del class="product-old-price">$990.00</del>
-											</h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist">
-													<i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
-												</button>
-												<button class="add-to-compare">
-													<i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span>
-												</button>
-												<button class="quick-view">
-													<i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
-												</button>
-											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn">
-												<i class="fa fa-shopping-cart"></i> add to cart
-											</button>
-										</div>
-									</div>
-									<!-- /product -->
-									<!-- product -->
-									<div class="product">
-										<div class="product-img">
-											<img src="../../assets/front/img/product05.png" alt="">
-										</div>
-										<div class="product-body">
-											<p class="product-category">Category</p>
-											<h3 class="product-name">
-												<a href="../../product">product name goes here</a>
-											</h3>
-											<h4 class="product-price">
-												$980.00
-												<del class="product-old-price">$990.00</del>
-											</h4>
-											<div class="product-rating">
-												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-											</div>
-											<div class="product-btns">
-												<button class="add-to-wishlist">
-													<i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
-												</button>
-												<button class="add-to-compare">
-													<i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span>
-												</button>
-												<button class="quick-view">
-													<i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
-												</button>
-											</div>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn">
-												<i class="fa fa-shopping-cart"></i> add to cart
-											</button>
+											<a class="add-to-cart-btn btn" th:href="@{/carrito/agregarproducto(idproducto=${productoDestacado.idproducto})}"> <i
+												class="fa fa-shopping-cart"
+											></i>Añadir al carrito
+											</a>
 										</div>
 									</div>
 									<!-- /product -->
@@ -1242,7 +1042,8 @@
 						<span class="copyright"> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> Copyright &copy;<script>
 							document.write(new Date().getFullYear());
 						</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-							target="_blank">@alexlenin_</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							target="_blank"
+						>@alexlenin_</a> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</span>
 					</div>
 				</div>

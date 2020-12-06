@@ -4,6 +4,8 @@ package pe.edu.unsch.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,6 +18,13 @@ import javax.persistence.Table;
 @Table(name = "carrito", catalog = "marketplacebd_test")
 public class Carrito implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private int idcarrito;
 	private CuponDescuento cuponDescuento;
 	private Producto producto;
@@ -24,6 +33,15 @@ public class Carrito implements java.io.Serializable {
 	private int unidadPorProducto;
 
 	public Carrito() {
+	}
+
+	public Carrito(CuponDescuento cuponDescuento, Producto producto, Usuario usuario, double precioTotal,
+			int unidadPorProducto) {
+		this.cuponDescuento = cuponDescuento;
+		this.producto = producto;
+		this.usuario = usuario;
+		this.precioTotal = precioTotal;
+		this.unidadPorProducto = unidadPorProducto;
 	}
 
 	public Carrito(int idcarrito, CuponDescuento cuponDescuento, Producto producto, Usuario usuario, double precioTotal,
@@ -37,7 +55,7 @@ public class Carrito implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idcarrito", unique = true, nullable = false)
 	public int getIdcarrito() {
 		return this.idcarrito;

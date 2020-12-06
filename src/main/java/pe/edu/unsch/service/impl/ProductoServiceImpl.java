@@ -18,9 +18,9 @@ public class ProductoServiceImpl implements ProductoService {
 	private ProductoDao productodao;
 
 	@Override
-	public Producto mostrardetalles(long idproducto) {
+	public Producto traerProducto(long idproducto) {
 		// TODO Auto-generated method stub
-		return productodao.mostrardetalles(idproducto);
+		return productodao.findByIdproducto(idproducto);
 	}
 
 	@Override
