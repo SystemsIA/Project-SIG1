@@ -1,7 +1,5 @@
 package pe.edu.unsch.controller.vendedor;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Controller;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.unsch.annotation.permisos.IsVendedor;
-import pe.edu.unsch.entities.Usuario;
 import pe.edu.unsch.service.CategoriaProductoService;
 import pe.edu.unsch.service.CategoriaService;
 import pe.edu.unsch.service.ProductoService;
@@ -32,36 +29,29 @@ public class FrontSellerController {
 	private CategoriaProductoService categoriaProductoService;
 
 	@GetMapping({ "/home", "" })
-	public String HomeVendedor(Model model, HttpSession httpSession) {
-		model.addAttribute("usuario", httpSession.getAttribute("usuario"));
+	public String HomeVendedor(Model model) {
+		model.addAttribute("title", "Vendedor");
 		return "views/vendedor/home/index";
 	}
 
 	@GetMapping("/{idVendedor}/products")
-	public String sellerProducts(@PathVariable(name = "idVendedor") Integer idVendedor, Model model,
-			HttpSession httpSession) {
-		model.addAttribute("productosVendedor", productoService.listaProductosVendedor(idVendedor))
-				.addAttribute("usuario", httpSession.getAttribute("usuario"));
+	public String sellerProducts(@PathVariable(name = "idVendedor") Integer idVendedor, Model model) {
+		model.addAttribute("productosVendedor", productoService.listaProductosVendedor(idVendedor));
 
 		return "views/vendedor/sellerViews/sellerProducts";
 	}
 
 	@GetMapping(value = "/{idVendedor}/categoria/products")
-	public String getMethodName(@PathVariable(name = "idVendedor") Integer idVendedor, Model model,
-			HttpSession httpSession) {
-
-		Usuario user = (Usuario) httpSession.getAttribute("usuario");
+	public String getMethodName(@PathVariable(name = "idVendedor") Integer idVendedor, Model model) {
 
 		model.addAttribute("productosVendedor", productoService.listaProductosVendedor(idVendedor));
-		model.addAttribute("usuario", user);
 		model.addAttribute("categorias", categoriaService.listaCategoriVendedor(idVendedor));
 
 		return "views/vendedor/sellerViews/categoriaProducts";
 	}
 
 	@GetMapping(value = "/categoria/quitar/{idproducto}")
-	public String eliminarProductoCategoria(@PathVariable Integer idproducto, RedirectAttributes redirectAttributes,
-			HttpSession httpSession) {
+	public String eliminarProductoCategoria(@PathVariable Integer idproducto, RedirectAttributes redirectAttributes) {
 
 		try {
 			categoriaProductoService.eliminarCategoriaProducto(idproducto);

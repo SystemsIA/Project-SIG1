@@ -1,9 +1,15 @@
 package pe.edu.unsch.service.impl;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +22,10 @@ import pe.edu.unsch.dao.comprador.CompradorDao;
 import pe.edu.unsch.entities.Pedido;
 import pe.edu.unsch.entities.Persona;
 import pe.edu.unsch.entities.Producto;
+import pe.edu.unsch.entities.Rol;
 import pe.edu.unsch.entities.RolUsuario;
 import pe.edu.unsch.entities.Usuario;
-import pe.edu.unsch.security.PasswordConfig;
+import pe.edu.unsch.security.PasswordEncoderConfig;
 import pe.edu.unsch.service.UsuarioService;
 
 @Service
@@ -32,7 +39,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	private CompradorDao compradorDao;
 
 	@Autowired
-	private PasswordConfig passwordEncoder;
+	private PasswordEncoderConfig passwordEncoder;
 
 	@Autowired
 	private RolDao rolDao;
@@ -74,6 +81,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 			rolUsuarioDao.save(new RolUsuario(rolDao.findByNombre("Comprador"), user));
 		}
 
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		Usuario usuario = usuarioDao.findByUsuario(username);
+
+		List<GrantedAuthority> usuarioRoles = new ArrayList<>();
+
+		for (Rol rol : rolDao.rolesPorUsuario(username)) {
+			usuarioRoles.add(new SimpleGrantedAuthority(rol.getNombre()));
+		}
+
+		return new User(usuario.getUsuario(), usuario.getPassword(), usuarioRoles);
 	}
 
 	@Override

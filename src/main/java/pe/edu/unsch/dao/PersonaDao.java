@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import pe.edu.unsch.entities.Persona;
 
 @Repository
-public interface PersonaDao extends JpaRepository<Persona, Serializable>{
-	
+public interface PersonaDao extends JpaRepository<Persona, Serializable> {
+
 }

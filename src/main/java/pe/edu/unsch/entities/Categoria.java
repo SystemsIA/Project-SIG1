@@ -36,7 +36,7 @@ public class Categoria implements java.io.Serializable {
 	public Categoria(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public Categoria(String nombre, Set<CategoriaProducto> categoriaProductos) {
 		this.nombre = nombre;
 		this.categoriaProductos = categoriaProductos;
@@ -62,7 +62,6 @@ public class Categoria implements java.io.Serializable {
 		this.proVendidos = proVendidos;
 	}
 
-	
 	public Categoria(Integer idcategoria, String nombre, String desrcipcion) {
 		super();
 		this.idcategoria = idcategoria;
@@ -101,7 +100,7 @@ public class Categoria implements java.io.Serializable {
 	}
 
 	// set and get nProductos proVendidos
-	
+
 	@Transient
 	public int getnProductos() {
 		return nProductos;

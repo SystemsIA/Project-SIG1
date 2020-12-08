@@ -10,19 +10,19 @@ import pe.edu.unsch.service.CategoriaProductoService;
 
 @Service
 @Transactional
-public class CategoriaProductoServiceImpl implements CategoriaProductoService{
-	
+public class CategoriaProductoServiceImpl implements CategoriaProductoService {
+
 	@Autowired
 	private ProductoDao productoDao;
-	
+
 	@Autowired
 	private CategoriaProductoDao categoriaProductoDao;
 
 	@Override
 	public void eliminarCategoriaProducto(long idproducto) {
-		
+
 		categoriaProductoDao.delete(productoDao.categoriaProducto(idproducto));
-		
+
 	}
-	
+
 }

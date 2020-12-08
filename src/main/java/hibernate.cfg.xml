@@ -4,11 +4,9 @@
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.password">12345678</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/marketplacebd_test</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> -->
+		<!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> <property 
+			name="hibernate.connection.password">12345678</property> <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/marketplacebd_test</property> 
+			<property name="hibernate.connection.username">root</property> <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> -->
 		<mapping class="pe.edu.unsch.entities.Boleta" />
 		<mapping class="pe.edu.unsch.entities.BoletaVenta" />
 		<mapping class="pe.edu.unsch.entities.Carrito" />
@@ -62,7 +60,5 @@
 		<mapping class="pe.edu.unsch.entities.Venta" />
 		<mapping class="pe.edu.unsch.entities.VentaReporte" />
 		<mapping class="pe.edu.unsch.entities.Productosjuntos" />
-
 	</session-factory>
-
 </hibernate-configuration>

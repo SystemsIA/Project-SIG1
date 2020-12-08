@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import pe.edu.unsch.entities.Carrito;
 
 @Repository
-public interface CarritoDao extends JpaRepository<Carrito, Serializable>{
-	
+public interface CarritoDao extends JpaRepository<Carrito, Serializable> {
+
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import pe.edu.unsch.entities.CategoriaProducto;
 
 @Repository
-public interface CategoriaProductoDao extends JpaRepository<CategoriaProducto, Serializable>{
-	
-	
+public interface CategoriaProductoDao extends JpaRepository<CategoriaProducto, Serializable> {
+
 }

@@ -50,7 +50,7 @@ public class Usuario implements java.io.Serializable {
 	public Usuario() {
 	}
 
-	public Usuario(String usuario, String password,  Persona persona) {
+	public Usuario(String usuario, String password, Persona persona) {
 		this.usuario = usuario;
 		this.password = password;
 		this.persona = persona;

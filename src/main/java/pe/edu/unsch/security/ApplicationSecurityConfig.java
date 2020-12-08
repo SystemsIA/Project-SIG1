@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
-import pe.edu.unsch.service.UsuarioLoginService;
+import pe.edu.unsch.service.UsuarioService;
 
 @Configuration
 @EnableWebSecurity
@@ -20,7 +20,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String KEY_SECRET = "miclavesecreta";
 
 	@Autowired
-	private UsuarioLoginService loginServiceImpl;
+	private UsuarioService usuarioService;
 
 	private final PasswordEncoder passwordEncoder;
 
@@ -31,7 +31,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(loginServiceImpl).passwordEncoder(passwordEncoder);
+		auth.userDetailsService(usuarioService).passwordEncoder(passwordEncoder);
 	}
 
 	@Override
@@ -57,11 +57,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 				.key(KEY_SECRET)
 				.and()
 			.exceptionHandling()
-				.accessDeniedPage("/403");
+				.accessDeniedPage("/403")
+				.and()
+			.httpBasic();
 	}
-	
+
 	private TokenBasedRememberMeServices getRememberMeServices() {
-		TokenBasedRememberMeServices service = new TokenBasedRememberMeServices(KEY_SECRET, loginServiceImpl);
+		TokenBasedRememberMeServices service = new TokenBasedRememberMeServices(KEY_SECRET, usuarioService);
 		service.setCookieName("remember-cookie");
 		service.setTokenValiditySeconds(100);
 		return service;

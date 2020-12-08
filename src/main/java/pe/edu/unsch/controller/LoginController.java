@@ -66,9 +66,8 @@ public class LoginController {
 			return "views/login/login";
 		} else {
 
-			redirectAttributes.addFlashAttribute("message", "Se pudo completar el registro");
 			usuarioService.crearUsuario(usuarioForm.getUsuario(), usuarioForm.getPassword());
-
+			redirectAttributes.addFlashAttribute("message", "Se pudo completar el registro");
 			return "redirect:/login";
 		}
 	}

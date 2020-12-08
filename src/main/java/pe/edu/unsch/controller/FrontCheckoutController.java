@@ -10,5 +10,5 @@ public class FrontCheckoutController {
 	public String checkout() {
 		return "views/front/checkout";
 	}
-	
+
 }
